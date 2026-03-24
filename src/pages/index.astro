@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 import {
+	audienceModes,
 	caseStudies,
 	experience,
 	featuredStats,
@@ -22,20 +23,41 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 
 		<header class="topbar">
 			<a class="brand" href="#top">{profile.name}</a>
-			<nav class="topnav" aria-label="Primary">
-				<a href="#skills">Skills</a>
-				<a href="#experience">Experience</a>
-				<a href="#case-studies">Case Studies</a>
-				<a href="#contact">Contact</a>
-			</nav>
+			<div class="topbar-actions">
+				<nav class="topnav" aria-label="Primary">
+					<a href="#skills">Skills</a>
+					<a href="#experience">Experience</a>
+					<a href="#case-studies">Case Studies</a>
+					<a href="#contact">Contact</a>
+				</nav>
+				<div class="header-mode-switch" role="tablist" aria-label="Portfolio view">
+					{
+						audienceModes.map((mode, index) => (
+							<button
+								class:list={['header-mode-button', index === 0 && 'is-active']}
+								type="button"
+								data-mode-button={mode.id}
+							>
+								{mode.label}
+							</button>
+						))
+					}
+				</div>
+			</div>
 		</header>
 
 		<main id="top">
 			<section class="hero panel">
 				<div class="hero-copy">
 					<p class="eyebrow">{hero.eyebrow}</p>
-					<h1>{hero.title}</h1>
-					<p class="hero-summary">{hero.summary}</p>
+					<h1>
+						<span data-mode-copy="forge">{hero.title.forge}</span>
+						<span data-mode-copy="signal" hidden>{hero.title.signal}</span>
+					</h1>
+					<p class="hero-summary">
+						<span data-mode-copy="forge">{hero.summary.forge}</span>
+						<span data-mode-copy="signal" hidden>{hero.summary.signal}</span>
+					</p>
 
 					<div class="hero-actions">
 						<a class="button button-primary" href="#skills">Explore Skills</a>
@@ -67,9 +89,23 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 
 					<div class="focus-card">
 						<p class="focus-kicker">Current focus</p>
-						<p>{hero.focus}</p>
+						<p>
+							<span data-mode-copy="forge">{hero.focus.forge}</span>
+							<span data-mode-copy="signal" hidden>{hero.focus.signal}</span>
+						</p>
 					</div>
 				</div>
+			</section>
+
+			<section class="section lens-intro panel-soft">
+				{
+					audienceModes.map((mode, index) => (
+						<div class="lens-copy" data-mode-copy={mode.id} hidden={index !== 0}>
+							<p class="eyebrow">{mode.kicker}</p>
+							<p>{mode.intro}</p>
+						</div>
+					))
+				}
 			</section>
 
 			<section id="skills" class="section">
@@ -96,7 +132,11 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 				<div class="skills-grid">
 					{
 						skillCategories.map((category) => (
-							<article class="skill-card panel" data-category={category.id}>
+							<article
+								class="skill-card panel"
+								data-category={category.id}
+								data-track={category.track}
+							>
 								<div class="skill-card-head">
 									<p class="skill-title">{category.title}</p>
 									<p class="skill-summary">{category.summary}</p>
@@ -123,7 +163,7 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 				<div class="timeline">
 					{
 						experience.map((role) => (
-							<article class="timeline-card panel">
+							<article class="timeline-card panel" data-track={role.track}>
 								<div class="timeline-meta">
 									<p class="timeline-company">{role.company}</p>
 									<p class="timeline-role">{role.title}</p>
@@ -158,7 +198,7 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 				<div class="case-study-grid">
 					{
 						caseStudies.map((item) => (
-							<details class="case-study panel">
+							<details class="case-study panel" data-track={item.track}>
 								<summary>
 									<span>
 										<span class="case-tag">{item.tag}</span>
@@ -187,7 +227,7 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 
 				{
 					sideProjects.map((project) => (
-						<article class="panel side-project">
+						<article class="panel side-project" data-track={project.track}>
 							<div>
 								<p class="case-tag">Featured Build</p>
 								<h3 class="side-project-title">{project.name}</h3>
@@ -249,20 +289,55 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 	</div>
 
 	<script is:inline>
+		const modeButtons = Array.from(document.querySelectorAll('[data-mode-button]'));
+		const modeCopies = Array.from(document.querySelectorAll('[data-mode-copy]'));
+		const trackCards = Array.from(document.querySelectorAll('[data-track]'));
 		const chips = Array.from(document.querySelectorAll('.filter-chip'));
-		const cards = Array.from(document.querySelectorAll('.skill-card'));
+		const skillCards = Array.from(document.querySelectorAll('.skill-card'));
+
+		const allowedModes = new Set(['forge', 'signal']);
+		const url = new URL(window.location.href);
+		let activeMode = allowedModes.has(url.searchParams.get('view')) ? url.searchParams.get('view') : 'forge';
+		let activeCategory = 'all';
+
+		const syncVisibility = () => {
+			modeCopies.forEach((node) => {
+				node.toggleAttribute('hidden', node.dataset.modeCopy !== activeMode);
+			});
+
+			modeButtons.forEach((button) => {
+				button.classList.toggle('is-active', button.dataset.modeButton === activeMode);
+			});
+
+			trackCards.forEach((card) => {
+				const track = card.dataset.track || 'both';
+				const matchesMode = track === 'both' || track === activeMode;
+				const matchesCategory =
+					!card.classList.contains('skill-card') ||
+					activeCategory === 'all' ||
+					card.dataset.category === activeCategory;
+				card.toggleAttribute('hidden', !(matchesMode && matchesCategory));
+			});
+		};
+
+		modeButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				activeMode = button.dataset.modeButton;
+				url.searchParams.set('view', activeMode);
+				window.history.replaceState({}, '', url);
+				syncVisibility();
+			});
+		});
 
 		chips.forEach((chip) => {
 			chip.addEventListener('click', () => {
-				const filter = chip.dataset.filter;
+				activeCategory = chip.dataset.filter || 'all';
 
 				chips.forEach((item) => item.classList.toggle('is-active', item === chip));
-
-				cards.forEach((card) => {
-					const matches = filter === 'all' || card.dataset.category === filter;
-					card.toggleAttribute('hidden', !matches);
-				});
+				syncVisibility();
 			});
 		});
+
+		syncVisibility();
 	</script>
 </Layout>

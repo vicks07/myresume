@@ -9,13 +9,43 @@ export const profile = {
 	},
 };
 
+export const audienceModes = [
+	{
+		id: 'forge',
+		label: 'Forge',
+		kicker: 'Forge View',
+		intro:
+			'Use this view when applying for backend, platform, tooling, reliability, or automation-heavy engineering roles.',
+	},
+	{
+		id: 'signal',
+		label: 'Signal',
+		kicker: 'Signal View',
+		intro:
+			'Use this view when applying for technical analyst, product operations, product strategy, or cross-functional delivery roles.',
+	},
+];
+
 export const hero = {
 	eyebrow: 'Software Engineer | Technical Analyst',
-	title: 'Backend systems, technical analysis, and workflow automation shaped into a stronger personal site.',
-	summary:
-		'Product-minded engineer and analyst with experience spanning backend services, platform operations, SQL-based analysis, security workflows, and internal tools that make teams faster and systems more reliable.',
-	focus:
-		'Position the site around credible strengths: backend delivery, technical analysis, automation, analytics, security, and cross-functional execution.',
+	title: {
+		forge:
+			'Backend systems, automation, and platform reliability shaped into a focused engineering story.',
+		signal:
+			'Technical analysis, product systems thinking, and cross-functional delivery shaped into a focused product story.',
+	},
+	summary: {
+		forge:
+			'Engineer with experience spanning backend services, migrations, service monitoring, security workflows, and internal tools that make teams faster and systems more reliable.',
+		signal:
+			'Technical analyst and product-minded operator with experience in feasibility analysis, SQL-driven insight, platform operations, stakeholder communication, and workflow design.',
+	},
+	focus: {
+		forge:
+			'Lead with backend delivery, automation, service reliability, migration work, and security-minded engineering.',
+		signal:
+			'Lead with product analysis, platform insight, cross-functional execution, documentation, and operations-facing decision support.',
+	},
 };
 
 export const featuredStats = [
@@ -28,6 +58,7 @@ export const featuredStats = [
 export const skillCategories = [
 	{
 		id: 'backend',
+		track: 'forge',
 		title: 'Backend Engineering',
 		summary: 'API-driven systems, migrations, integrations, and service reliability work.',
 		skills: ['Node.js', 'Go', 'Python', 'APIs', 'System integrations'],
@@ -39,6 +70,7 @@ export const skillCategories = [
 	},
 	{
 		id: 'analytics',
+		track: 'both',
 		title: 'Data and Analytics',
 		summary: 'SQL-heavy analysis, internal dashboards, crash insights, and reporting systems.',
 		skills: ['SQL', 'Utilization analysis', 'Reporting', 'Dashboards', 'Crash analysis'],
@@ -50,6 +82,7 @@ export const skillCategories = [
 	},
 	{
 		id: 'technical-analysis',
+		track: 'signal',
 		title: 'Product and Technical Analysis',
 		summary: 'Feasibility analysis, risk assessment, stakeholder communication, and system mapping.',
 		skills: ['Requirements analysis', 'Risk assessment', 'UML diagrams', 'Jira', 'Confluence'],
@@ -61,6 +94,7 @@ export const skillCategories = [
 	},
 	{
 		id: 'cloud-ops',
+		track: 'forge',
 		title: 'Cloud and Operations',
 		summary: 'Monitoring, event-driven workflows, internal tooling, and operational stability.',
 		skills: ['AWS Lambda', 'Monitoring', 'Automation', 'Workflow tooling', 'Notifications'],
@@ -72,6 +106,7 @@ export const skillCategories = [
 	},
 	{
 		id: 'security',
+		track: 'forge',
 		title: 'Security and Compliance',
 		summary: 'Security hardening, vulnerability workflows, and compliance-oriented delivery.',
 		skills: ['AWS WAF', 'ISMS', 'ISO 27001', 'Dependency security', 'Risk reviews'],
@@ -83,6 +118,7 @@ export const skillCategories = [
 	},
 	{
 		id: 'leadership',
+		track: 'signal',
 		title: 'Collaboration and Leadership',
 		summary: 'Cross-functional execution, documentation, partner collaboration, and team guidance.',
 		skills: ['Stakeholder management', 'Team leadership', 'Documentation', 'Partner communication'],
@@ -97,6 +133,7 @@ export const skillCategories = [
 export const experience = [
 	{
 		company: 'Cloudmore',
+		track: 'signal',
 		title: 'Technical Analyst',
 		period: 'Feb 2024 - Present',
 		location: 'Tallinn, Estonia',
@@ -112,6 +149,7 @@ export const experience = [
 	},
 	{
 		company: 'Camp K12',
+		track: 'forge',
 		title: 'Software Engineer - Product and Ops Tools',
 		period: 'Jan 2022 - Jun 2023',
 		location: 'Gurgaon, India',
@@ -127,6 +165,7 @@ export const experience = [
 	},
 	{
 		company: 'Fitternity',
+		track: 'both',
 		title: 'Software Engineer - Product Integrations',
 		period: 'Jan 2020 - Dec 2021',
 		location: 'Mumbai, India',
@@ -141,6 +180,7 @@ export const experience = [
 	},
 	{
 		company: 'Kaam 24',
+		track: 'forge',
 		title: 'Backend Developer',
 		period: 'May 2019 - Dec 2019',
 		location: 'New Delhi, India',
@@ -155,6 +195,7 @@ export const experience = [
 	},
 	{
 		company: 'Applied Cognition Systems Pvt Ltd',
+		track: 'forge',
 		title: 'Software Engineer',
 		period: 'Jun 2016 - Apr 2019',
 		location: 'Manipal, India',
@@ -170,6 +211,7 @@ export const experience = [
 
 export const caseStudies = [
 	{
+		track: 'signal',
 		tag: 'Security Automation',
 		title: 'Dependabot alerts into actionable Jira tickets',
 		summary:
@@ -180,6 +222,7 @@ export const caseStudies = [
 		skills: ['Automation', 'Security', 'Workflow design', 'Jira'],
 	},
 	{
+		track: 'forge',
 		tag: 'Backend Migration',
 		title: 'Migrated a key service from Node.js to Go',
 		summary:
@@ -190,6 +233,7 @@ export const caseStudies = [
 		skills: ['Go', 'Node.js', 'Architecture', 'Backend systems'],
 	},
 	{
+		track: 'forge',
 		tag: 'Monitoring',
 		title: 'Built AWS Lambda service monitoring with real-time alerts',
 		summary:
@@ -200,6 +244,7 @@ export const caseStudies = [
 		skills: ['AWS Lambda', 'Monitoring', 'Reliability', 'Operations'],
 	},
 	{
+		track: 'signal',
 		tag: 'Analytics',
 		title: 'Analyzed broker utilization with SQL',
 		summary:
@@ -214,6 +259,7 @@ export const caseStudies = [
 export const sideProjects = [
 	{
 		name: 'NoFluff AI',
+		track: 'signal',
 		url: 'https://www.nofluff.space',
 		summary:
 			'AI-powered personal project that summarises long-form LinkedIn posts into concise, high-signal insights.',
