@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+import {
+	caseStudies,
+	experience,
+	featuredStats,
+	hero,
+	profile,
+	sideProjects,
+	skillCategories,
+} from '../data/site';
+---
+
+<Layout>
+	<div class="page-shell">
+		<div class="ambient ambient-left"></div>
+		<div class="ambient ambient-right"></div>
+
+		<header class="topbar">
+			<a class="brand" href="#top">{profile.name}</a>
+			<nav class="topnav" aria-label="Primary">
+				<a href="#skills">Skills</a>
+				<a href="#experience">Experience</a>
+				<a href="#case-studies">Case Studies</a>
+				<a href="#contact">Contact</a>
+			</nav>
+		</header>
+
+		<main id="top">
+			<section class="hero panel">
+				<div class="hero-copy">
+					<p class="eyebrow">{hero.eyebrow}</p>
+					<h1>{hero.title}</h1>
+					<p class="hero-summary">{hero.summary}</p>
+
+					<div class="hero-actions">
+						<a class="button button-primary" href="#skills">Explore Skills</a>
+						<a class="button button-secondary" href="#case-studies">See Proof of Work</a>
+						<a class="button button-secondary" href={profile.resumePath} download>
+							Download Resume
+						</a>
+					</div>
+
+					<ul class="hero-meta">
+						<li>{profile.location}</li>
+						<li><a href={profile.links.linkedin}>LinkedIn</a></li>
+						<li><a href={profile.links.github}>GitHub</a></li>
+						<li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+					</ul>
+				</div>
+
+				<div class="hero-aside">
+					<div class="stat-grid">
+						{
+							featuredStats.map((stat) => (
+								<article class="stat-card">
+									<p class="stat-value">{stat.value}</p>
+									<p class="stat-label">{stat.label}</p>
+								</article>
+							))
+						}
+					</div>
+
+					<div class="focus-card">
+						<p class="focus-kicker">Current focus</p>
+						<p>{hero.focus}</p>
+					</div>
+				</div>
+			</section>
+
+			<section id="skills" class="section">
+				<div class="section-heading">
+					<p class="eyebrow">Skills Dashboard</p>
+					<h2>Show skills with evidence, not just keywords.</h2>
+					<p>
+						Each skill cluster connects to real work across product operations, backend
+						systems, analytics, security, and internal tooling.
+					</p>
+				</div>
+
+				<div class="filter-bar" role="tablist" aria-label="Skill categories">
+					<button class="filter-chip is-active" type="button" data-filter="all">All</button>
+					{
+						skillCategories.map((category) => (
+							<button class="filter-chip" type="button" data-filter={category.id}>
+								{category.title}
+							</button>
+						))
+					}
+				</div>
+
+				<div class="skills-grid">
+					{
+						skillCategories.map((category) => (
+							<article class="skill-card panel" data-category={category.id}>
+								<div class="skill-card-head">
+									<p class="skill-title">{category.title}</p>
+									<p class="skill-summary">{category.summary}</p>
+								</div>
+								<ul class="chip-list" aria-label={`${category.title} skills`}>
+									{category.skills.map((skill) => <li>{skill}</li>)}
+								</ul>
+								<p class="evidence-label">Proof points</p>
+								<ul class="evidence-list">
+									{category.evidence.map((item) => <li>{item}</li>)}
+								</ul>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<section id="experience" class="section">
+				<div class="section-heading">
+					<p class="eyebrow">Experience Timeline</p>
+					<h2>Career progression anchored in delivery and systems thinking.</h2>
+				</div>
+
+				<div class="timeline">
+					{
+						experience.map((role) => (
+							<article class="timeline-card panel">
+								<div class="timeline-meta">
+									<p class="timeline-company">{role.company}</p>
+									<p class="timeline-role">{role.title}</p>
+									<p class="timeline-date">{role.period}</p>
+									<p class="timeline-location">{role.location}</p>
+								</div>
+								<div class="timeline-body">
+									<p class="timeline-summary">{role.summary}</p>
+									<ul class="timeline-highlights">
+										{role.highlights.map((item) => <li>{item}</li>)}
+									</ul>
+									<ul class="chip-list">
+										{role.skills.map((skill) => <li>{skill}</li>)}
+									</ul>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<section id="case-studies" class="section">
+				<div class="section-heading">
+					<p class="eyebrow">Selected Case Studies</p>
+					<h2>Interactive proof of work for the strongest stories in the resume.</h2>
+					<p>
+						These are the kinds of stories recruiters and hiring managers remember because they
+						show ownership, context, and impact.
+					</p>
+				</div>
+
+				<div class="case-study-grid">
+					{
+						caseStudies.map((item) => (
+							<details class="case-study panel">
+								<summary>
+									<span>
+										<span class="case-tag">{item.tag}</span>
+										<span class="case-title">{item.title}</span>
+									</span>
+									<span class="case-impact">{item.impact}</span>
+								</summary>
+								<div class="case-body">
+									<p>{item.summary}</p>
+									<p><strong>Approach:</strong> {item.approach}</p>
+									<ul class="chip-list">
+										{item.skills.map((skill) => <li>{skill}</li>)}
+									</ul>
+								</div>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="section-heading">
+					<p class="eyebrow">Side Project</p>
+					<h2>One product outside work that shows taste, humor, and iteration.</h2>
+				</div>
+
+				{
+					sideProjects.map((project) => (
+						<article class="panel side-project">
+							<div>
+								<p class="case-tag">Featured Build</p>
+								<h3 class="side-project-title">{project.name}</h3>
+								<p class="side-project-summary">{project.summary}</p>
+								<ul class="evidence-list">
+									{project.highlights.map((item) => <li>{item}</li>)}
+								</ul>
+							</div>
+							<div class="side-project-actions">
+								<a class="button button-primary" href={project.url}>Visit Site</a>
+								<a class="button button-secondary" href={project.url}>
+									{project.url.replace('https://', '')}
+								</a>
+							</div>
+						</article>
+					))
+				}
+			</section>
+
+			<section class="section compact-grid">
+				<article class="panel info-card">
+					<p class="eyebrow">Education</p>
+					<ul class="plain-list">
+						<li>MBA, Estonian Business School</li>
+						<li>Master of Engineering, Manipal Academy of Higher Education</li>
+						<li>Bachelor of Engineering, SJC Institute of Technology</li>
+					</ul>
+				</article>
+
+				<article class="panel info-card">
+					<p class="eyebrow">Languages and Community</p>
+					<ul class="plain-list">
+						<li>English</li>
+						<li>Estonian A1, working toward A2</li>
+						<li>Volunteer at Agile Saturday and Global Agile Summit</li>
+					</ul>
+				</article>
+			</section>
+
+			<section id="contact" class="section contact panel">
+				<div>
+					<p class="eyebrow">Contact</p>
+					<h2>Open to conversations around backend, product systems, and technical analysis.</h2>
+					<p>
+						If you are hiring for backend engineering, internal tools, platform operations, or
+						technical analysis work, this site is the quick overview and the resume is one click
+						away.
+					</p>
+				</div>
+
+				<div class="contact-actions">
+					<a class="button button-primary" href={`mailto:${profile.email}`}>Email Vikram</a>
+					<a class="button button-secondary" href={profile.resumePath} download>Download Resume</a>
+					<a class="button button-secondary" href={profile.links.linkedin}>Connect on LinkedIn</a>
+					<a class="button button-secondary" href={profile.links.github}>View GitHub</a>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<script is:inline>
+		const chips = Array.from(document.querySelectorAll('.filter-chip'));
+		const cards = Array.from(document.querySelectorAll('.skill-card'));
+
+		chips.forEach((chip) => {
+			chip.addEventListener('click', () => {
+				const filter = chip.dataset.filter;
+
+				chips.forEach((item) => item.classList.toggle('is-active', item === chip));
+
+				cards.forEach((card) => {
+					const matches = filter === 'all' || card.dataset.category === filter;
+					card.toggleAttribute('hidden', !matches);
+				});
+			});
+		});
+	</script>
+</Layout>

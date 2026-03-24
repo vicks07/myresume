@@ -1,0 +1,529 @@
+:root {
+	--bg: #f4efe7;
+	--bg-strong: #efe4d4;
+	--panel: rgba(255, 250, 244, 0.78);
+	--panel-strong: #fff9f2;
+	--text: #1f2330;
+	--muted: #5b5c6f;
+	--line: rgba(31, 35, 48, 0.12);
+	--accent: #0c7c78;
+	--accent-strong: #0e5d6e;
+	--accent-soft: rgba(12, 124, 120, 0.12);
+	--shadow: 0 24px 80px rgba(56, 39, 24, 0.12);
+	--radius-lg: 28px;
+	--radius-md: 20px;
+	--radius-sm: 999px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+	background:
+		radial-gradient(circle at top left, rgba(203, 128, 62, 0.22), transparent 30%),
+		radial-gradient(circle at top right, rgba(12, 124, 120, 0.18), transparent 32%),
+		linear-gradient(180deg, #f7f0e6 0%, #f2ebdf 55%, #efe5d7 100%);
+	color: var(--text);
+	min-height: 100vh;
+}
+
+a {
+	color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+.page-shell {
+	position: relative;
+	max-width: 1220px;
+	margin: 0 auto;
+	padding: 24px;
+}
+
+.ambient {
+	position: fixed;
+	z-index: -1;
+	border-radius: 999px;
+	filter: blur(90px);
+	opacity: 0.7;
+}
+
+.ambient-left {
+	top: 12%;
+	left: -120px;
+	width: 280px;
+	height: 280px;
+	background: rgba(195, 88, 36, 0.2);
+}
+
+.ambient-right {
+	top: 8%;
+	right: -80px;
+	width: 260px;
+	height: 260px;
+	background: rgba(12, 124, 120, 0.24);
+}
+
+.topbar {
+	position: sticky;
+	top: 20px;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 14px 18px;
+	margin-bottom: 28px;
+	background: rgba(255, 248, 239, 0.72);
+	border: 1px solid rgba(255, 255, 255, 0.55);
+	border-radius: var(--radius-sm);
+	backdrop-filter: blur(18px);
+	box-shadow: 0 12px 40px rgba(45, 32, 22, 0.08);
+}
+
+.brand,
+.topnav a,
+.button,
+.filter-chip,
+summary {
+	font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+}
+
+.brand {
+	font-weight: 700;
+	text-decoration: none;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	font-size: 0.85rem;
+}
+
+.topnav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.topnav a {
+	text-decoration: none;
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+main {
+	display: grid;
+	gap: 28px;
+}
+
+.panel {
+	background: var(--panel);
+	border: 1px solid rgba(255, 255, 255, 0.55);
+	backdrop-filter: blur(18px);
+	box-shadow: var(--shadow);
+	border-radius: var(--radius-lg);
+}
+
+.hero {
+	display: grid;
+	grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.85fr);
+	gap: 28px;
+	padding: 36px;
+}
+
+.hero h1,
+.section-heading h2,
+.contact h2 {
+	font-size: clamp(2.5rem, 6vw, 5.2rem);
+	line-height: 0.95;
+	margin: 0 0 16px;
+	letter-spacing: -0.04em;
+}
+
+.eyebrow,
+.focus-kicker,
+.evidence-label,
+.case-tag,
+.timeline-company,
+.stat-label {
+	font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 0.11em;
+	font-size: 0.75rem;
+	color: var(--accent-strong);
+	margin: 0 0 12px;
+}
+
+.hero-summary,
+.section-heading p,
+.timeline-summary,
+.case-body p,
+.contact p,
+.skill-summary {
+	font-size: 1.08rem;
+	line-height: 1.7;
+	color: var(--muted);
+}
+
+.hero-actions,
+.contact-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	margin: 28px 0;
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 14px 20px;
+	border-radius: var(--radius-sm);
+	text-decoration: none;
+	font-weight: 700;
+	transition:
+		transform 180ms ease,
+		background-color 180ms ease,
+		border-color 180ms ease;
+}
+
+.button:hover,
+.filter-chip:hover,
+summary:hover {
+	transform: translateY(-1px);
+}
+
+.button-primary {
+	background: var(--text);
+	color: #f9f3eb;
+}
+
+.button-secondary {
+	background: transparent;
+	border: 1px solid var(--line);
+	color: var(--text);
+}
+
+.hero-meta,
+.plain-list,
+.timeline-highlights,
+.evidence-list,
+.chip-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.hero-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 20px;
+	color: var(--muted);
+	font-size: 0.98rem;
+}
+
+.hero-meta li {
+	position: relative;
+}
+
+.hero-meta li:not(:first-child)::before {
+	content: '•';
+	position: absolute;
+	left: -12px;
+	color: rgba(31, 35, 48, 0.36);
+}
+
+.hero-aside {
+	display: grid;
+	gap: 18px;
+}
+
+.stat-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px;
+}
+
+.stat-card,
+.focus-card,
+.info-card {
+	padding: 22px;
+	background: var(--panel-strong);
+	border: 1px solid rgba(31, 35, 48, 0.08);
+	border-radius: var(--radius-md);
+}
+
+.stat-value {
+	margin: 0 0 10px;
+	font-size: 2.1rem;
+	font-weight: 700;
+	font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+}
+
+.stat-label {
+	margin-bottom: 0;
+	color: var(--muted);
+	letter-spacing: 0;
+	text-transform: none;
+	font-size: 0.95rem;
+}
+
+.focus-card p:last-child {
+	margin: 0;
+	font-size: 1.05rem;
+	line-height: 1.6;
+}
+
+.section {
+	display: grid;
+	gap: 20px;
+}
+
+.section-heading {
+	max-width: 760px;
+}
+
+.section-heading h2 {
+	font-size: clamp(2rem, 4vw, 3.6rem);
+}
+
+.filter-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.filter-chip {
+	padding: 10px 16px;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--line);
+	background: rgba(255, 251, 245, 0.7);
+	color: var(--text);
+	cursor: pointer;
+}
+
+.filter-chip.is-active {
+	background: var(--accent);
+	border-color: transparent;
+	color: white;
+}
+
+.skills-grid,
+.case-study-grid,
+.compact-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 20px;
+}
+
+.skill-card,
+.timeline-card,
+.case-study,
+.contact {
+	padding: 24px;
+}
+
+.skill-card-head {
+	margin-bottom: 18px;
+}
+
+.skill-title,
+.timeline-role,
+.case-title {
+	margin: 0 0 8px;
+	font-size: 1.45rem;
+}
+
+.chip-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.chip-list li {
+	padding: 8px 12px;
+	border-radius: var(--radius-sm);
+	background: var(--accent-soft);
+	color: var(--accent-strong);
+	font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+	font-size: 0.9rem;
+}
+
+.evidence-list,
+.timeline-highlights,
+.plain-list {
+	display: grid;
+	gap: 12px;
+}
+
+.evidence-list li,
+.timeline-highlights li,
+.plain-list li {
+	position: relative;
+	padding-left: 18px;
+	line-height: 1.7;
+	color: var(--muted);
+}
+
+.evidence-list li::before,
+.timeline-highlights li::before,
+.plain-list li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.8em;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--accent);
+}
+
+.timeline {
+	display: grid;
+	gap: 18px;
+}
+
+.timeline-card {
+	display: grid;
+	grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
+	gap: 24px;
+	align-items: start;
+}
+
+.timeline-company,
+.timeline-date,
+.timeline-location {
+	margin-bottom: 10px;
+}
+
+.timeline-role {
+	font-size: 1.55rem;
+}
+
+.timeline-date,
+.timeline-location {
+	margin-top: 0;
+	color: var(--muted);
+}
+
+.case-study summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	cursor: pointer;
+	list-style: none;
+}
+
+.case-study summary::-webkit-details-marker {
+	display: none;
+}
+
+.case-impact {
+	color: var(--muted);
+	font-size: 0.95rem;
+	text-align: right;
+}
+
+.case-body {
+	padding-top: 18px;
+	margin-top: 18px;
+	border-top: 1px solid var(--line);
+}
+
+.contact {
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+	gap: 20px;
+}
+
+.side-project {
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+	gap: 24px;
+	padding: 24px;
+	align-items: start;
+}
+
+.side-project-title {
+	margin: 0 0 12px;
+	font-size: 1.7rem;
+}
+
+.side-project-summary {
+	margin: 0 0 20px;
+	font-size: 1.08rem;
+	line-height: 1.7;
+	color: var(--muted);
+}
+
+.side-project-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+@media (max-width: 900px) {
+	.hero,
+	.timeline-card,
+	.contact,
+	.side-project,
+	.skills-grid,
+	.case-study-grid,
+	.compact-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.hero h1,
+	.section-heading h2,
+	.contact h2 {
+		line-height: 1.02;
+	}
+}
+
+@media (max-width: 640px) {
+	.page-shell {
+		padding: 16px;
+	}
+
+	.topbar,
+	.hero,
+	.skill-card,
+	.timeline-card,
+	.case-study,
+	.contact,
+	.info-card {
+		padding: 18px;
+	}
+
+	.topbar {
+		position: static;
+		border-radius: 22px;
+	}
+
+	.topnav {
+		gap: 12px;
+	}
+
+	.stat-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-meta li:not(:first-child)::before {
+		display: none;
+	}
+}
