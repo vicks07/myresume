@@ -10,6 +10,9 @@ import {
 	sideProjects,
 	skillCategories,
 } from '../data/site';
+
+const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
+const resumePath = `${assetBase}${profile.resumeFile}`;
 ---
 
 <Layout>
@@ -37,7 +40,7 @@ import {
 					<div class="hero-actions">
 						<a class="button button-primary" href="#skills">Explore Skills</a>
 						<a class="button button-secondary" href="#case-studies">See Proof of Work</a>
-						<a class="button button-secondary" href={profile.resumePath} download>
+						<a class="button button-secondary" href={resumePath} download>
 							Download Resume
 						</a>
 					</div>
@@ -237,7 +240,7 @@ import {
 
 				<div class="contact-actions">
 					<a class="button button-primary" href={`mailto:${profile.email}`}>Email Vikram</a>
-					<a class="button button-secondary" href={profile.resumePath} download>Download Resume</a>
+					<a class="button button-secondary" href={resumePath} download>Download Resume</a>
 					<a class="button button-secondary" href={profile.links.linkedin}>Connect on LinkedIn</a>
 					<a class="button button-secondary" href={profile.links.github}>View GitHub</a>
 				</div>

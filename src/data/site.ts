@@ -2,7 +2,7 @@ export const profile = {
 	name: 'Vikram Thalithaje',
 	email: 'vikram.january@gmail.com',
 	location: 'Tallinn, Estonia',
-	resumePath: '/vikram-thalithaje-resume.pdf',
+	resumeFile: 'vikram-thalithaje-resume.pdf',
 	links: {
 		linkedin: 'https://linkedin.com',
 		github: 'https://github.com',
