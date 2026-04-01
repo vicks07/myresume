@@ -970,15 +970,15 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 						</div>
 					</div>
 					<div class="funnel-arrow-row">
-						<span>↓ Opt in and book through Rendin · <em>Assumption: 10–15% pilot · 25–35% upside · base: 35%</em></span>
+						<span>↓ Opt in and book through Rendin · <em>Assumption: 10–35% depending on placement and trust · base: 20%</em></span>
 					</div>
 					<div class="funnel-row">
 						<div class="funnel-label">
 							<strong>Confirmed bookings via Rendin</strong>
-							<span>Shared engine for all three revenue streams below · <em>base: ~95/month</em></span>
+							<span>Base case only — scenario table below shows the range · <em>base: ~55/month</em></span>
 						</div>
 						<div class="funnel-val">
-							<span class="big">~95</span>
+							<span class="big">~55</span>
 							<span class="sub">bookings / month</span>
 						</div>
 					</div>
@@ -986,12 +986,12 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 
 				<h3 style="font-size: 1.1rem; margin: 32px 0 12px; color: var(--text);">Scenario sensitivity — commission revenue (Estonia, year 1)</h3>
 
+				<p style="font-size: 0.85rem; color: var(--muted); margin: 0 0 14px;">Pool held constant: 273 eligible tenants/month (600 agreements × 70% Estonia × 65% need moving help). Only booking conversion varies — that is the most uncertain and most testable assumption.</p>
+
 				<table class="partner-table" style="margin: 0 0 24px;">
 					<thead>
 						<tr>
 							<th>Scenario</th>
-							<th>Estonia share</th>
-							<th>Need moving help</th>
 							<th>Booking conversion</th>
 							<th>Bookings/month</th>
 							<th style="text-align: right;">Net revenue / year</th>
@@ -1000,44 +1000,38 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					<tbody>
 						<tr>
 							<td><strong>Conservative</strong></td>
-							<td>60%</td>
-							<td>40%</td>
 							<td>10%</td>
-							<td>~14</td>
-							<td style="text-align: right; color: var(--muted);">~€5k</td>
+							<td>~27</td>
+							<td style="text-align: right; color: var(--muted);">~€10k</td>
 						</tr>
 						<tr>
 							<td><strong>Base</strong></td>
-							<td>70%</td>
-							<td>65%</td>
-							<td>35%</td>
-							<td>~95</td>
-							<td style="text-align: right; color: var(--text); font-weight: 600;">~€34k</td>
+							<td>20%</td>
+							<td>~55</td>
+							<td style="text-align: right; color: var(--text); font-weight: 600;">~€20k</td>
 						</tr>
 						<tr>
-							<td><strong>Upside</strong></td>
-							<td>75%</td>
-							<td>65%</td>
-							<td>45%</td>
-							<td>~132</td>
-							<td style="text-align: right; color: rgba(20,100,60,0.85);">~€47k</td>
+							<td><strong>Optimistic</strong></td>
+							<td>35%</td>
+							<td>~95</td>
+							<td style="text-align: right; color: rgba(20,100,60,0.85);">~€34k</td>
 						</tr>
 					</tbody>
 				</table>
 
-				<p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 28px;">The conservative case assumes the feature launches with poor discoverability and no established partner trust — essentially a cold start. The base case assumes the prompt is well-placed and partners are already vetted. The upside case is realistic by month 6–9 if early conversion data supports it.</p>
+				<p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 28px;">The conservative case reflects a cold start — poor prompt placement and no established partner trust. The base case assumes the prompt is well-placed and partners are vetted before launch. The optimistic case is realistic by month 6–9 if early data supports it. Revenue calculated at €250 average move, 12% commission.</p>
 
-				<p style="margin: 0 0 16px; font-size: 0.75rem; color: var(--muted); font-family: 'Trebuchet MS', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;">↓ V1 revenue — referral commission from these 95 bookings</p>
+				<p style="margin: 0 0 16px; font-size: 0.75rem; color: var(--muted); font-family: 'Trebuchet MS', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;">↓ V1 revenue — referral commission · base case (55 bookings/month)</p>
 
 				<div class="cs-card" style="border-top: 3px solid var(--accent); margin-bottom: 12px;">
 					<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
 						<div style="flex: 1;">
 							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">V1 · Partner Commission</p>
 							<p>Moving company pays Rendin ~12% of each booked move. <strong>The tenant pays nothing extra</strong> — the commission comes entirely out of the partner's margin. Rendin carries no credit risk, no billing logic, no collections. The partner benefits from a warm lead with move-in date and address already known.</p>
-							<p style="font-size: 0.88rem; color: var(--muted); margin-top: 8px;">On an average €250 move, this is ~€25–30 per booking. At 95 bookings/month (base case, Estonia), that's ~€2,850/month. The model resets each month — no compounding, no carry.</p>
+							<p style="font-size: 0.88rem; color: var(--muted); margin-top: 8px;">On an average €250 move, this is ~€30 per booking. At 55 bookings/month (base case, 20% conversion), that's ~€1,650/month. The model resets each month — no compounding, no carry.</p>
 						</div>
 						<div style="text-align: right; flex-shrink: 0;">
-							<span style="font-size: 1.8rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">~€34k</span>
+							<span style="font-size: 1.8rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">~€20k</span>
 							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">year 1 · Estonia · base case</span>
 						</div>
 					</div>
@@ -1182,7 +1176,7 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 						<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">The partner gets a warm lead: move-in date known, destination address known, tenant identity verified. That context makes a 10–12% commission easy to justify — the conversion cost is low compared to cold acquisition. Revenue resets monthly with new bookings; no compounding, no carry risk.</p>
 					</div>
 					<div class="rev-est">
-						<span class="amount">~€34k</span>
+						<span class="amount">~€20k</span>
 						<span class="freq">year 1 · Estonia · base case</span>
 					</div>
 				</div>
@@ -1200,7 +1194,7 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 
 <div class="callout" style="background: var(--text); border-left: 3px solid var(--accent);">
 					<p class="callout-label" style="color: var(--accent);">V1 revenue picture — Estonia, year 1</p>
-					<p style="color: rgba(244,239,231,0.65);">Commission alone generates <strong style="color: #f4efe7;">~€34k/year</strong> at the base case — with no direct logistics operations, no billing infrastructure, and no credit exposure, though partner quality and referral-related trust risk would still need active management. Poland would require separate validation — conversion, partner quality, and local service norms cannot be assumed from Estonia results.</p>
+					<p style="color: rgba(244,239,231,0.65);">Commission alone generates <strong style="color: #f4efe7;">~€20k/year</strong> at the base case (20% conversion, 55 bookings/month) — with no logistics operations, no billing infrastructure, and no credit exposure, though partner quality and referral-related trust risk would still need active management. The optimistic case (~€34k at 35% conversion) is possible by month 6–9 if early data supports it. Poland would require separate validation.</p>
 					<p style="color: rgba(244,239,231,0.5); margin-top: 10px; font-size: 0.88rem;">These monetization options are structurally distinct, but may create tension if combined. In practice, Rendin would likely start with one primary model and test whether additional monetization affects partner willingness or user trust before layering anything on top.</p>
 				</div>
 			</section>
