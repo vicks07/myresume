@@ -803,17 +803,18 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 			<section class="section cs-section panel" id="problem">
 				<p class="cs-section-num">01 — Problem</p>
 				<h2>A to Z?<br><em>Not quite.</em></h2>
+				<p>I recently signed a rental agreement on Rendin, moving from Tartu to Tallinn. The contract was seamless. What came next wasn't — and that gap is what this case study examines.</p>
 				<p>
 					Rendin describes its mission as a safe rental experience "from A to Z — from listing to handover protocol." The platform handles almost every step well: discovery, background checks, legal agreements, insurance, damage claims.
 				</p>
 				<p>
-					But there is one moment where it hands the tenant a signed PDF and disappears: the actual move.
+					Rendin handles the legal and trust layer of renting well. The practical move itself — the actual day — sits just outside what the product currently covers.
 				</p>
 
 				<div class="callout">
 					<p class="callout-label">The core insight</p>
 					<p>
-						Rendin already has the tenant's move-in date, the property address, and verified identity. No moving company in Estonia or Poland holds this data. Rendin is sitting on the single clearest intent signal in the moving market — and not using it.
+						Rendin already has the tenant's move-in date, the property address, and verified identity. No moving company in Estonia or Poland holds this data. Rendin may be sitting on one of the strongest intent signals in Estonia's moving journey — and may not be fully using it yet.
 					</p>
 				</div>
 
@@ -825,7 +826,7 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					<div class="cs-card">
 						<div class="cs-card-icon">📋</div>
 						<h4>The handover gap</h4>
-						<p>The handover protocol is a legal moment that happens at move-in. A chaotic, undocumented move raises the chance of damage disputes — which directly increases Rendin's insurance exposure.</p>
+						<p>The handover protocol is a legal moment that happens at move-in. A smoother move may improve handover completion and documentation quality. If that correlates with fewer disputes or clearer claim resolution, it could create indirect value for Rendin — though the link is not proven.</p>
 					</div>
 					<div class="cs-card">
 						<div class="cs-card-icon">🌍</div>
@@ -848,6 +849,11 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 				<p>
 					Estonia has significant internal mobility — Tallinn pulls population from smaller cities — alongside a growing expat and digital nomad community drawn by e-Residency and EU digital infrastructure. Moving24.ee, one of Tallinn's larger operators, reports <strong>over 140 residential moves per day in Tallinn alone</strong>. These are Rendin's users.
 				</p>
+
+				<div class="callout">
+					<p class="callout-label">Note on methodology</p>
+					<p>The personas below are hypothesis-driven, built from observed market contexts and public signals rather than direct interviews. Each flags the specific pain and need that primary research would validate or refute.</p>
+				</div>
 
 				<div class="persona">
 					<div class="persona-avatar" style="background: rgba(12, 124, 120, 0.12);">👩‍💻</div>
@@ -936,13 +942,14 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					</div>
 				</div>
 
-				<h3 style="font-size: 1.2rem; margin: 36px 0 16px; color: var(--text);">Bottom-up funnel: Estonia only</h3>
+				<h3 style="font-size: 1.2rem; margin: 36px 0 8px; color: var(--text);">Bottom-up funnel: Estonia only</h3>
+				<p style="margin-bottom: 20px; font-size: 0.88rem; color: var(--muted);">Each step below is an assumption, not a measured figure. The ranges reflect the spread between a difficult early pilot and a product with established trust. The base case is used for the revenue model; the scenario table below shows how the output changes if the assumptions move.</p>
 
 				<div class="funnel">
 					<div class="funnel-row">
 						<div class="funnel-label">
 							<strong>Total agreements signed (Estonia)</strong>
-							<span>Monthly Rendin contracts, ~70% Estonia-based</span>
+							<span>Monthly Rendin contracts · <em>Assumption: 60–75% Estonia-based · base: 70% → ~420/month</em></span>
 						</div>
 						<div class="funnel-val">
 							<span class="big">~420</span>
@@ -950,12 +957,12 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 						</div>
 					</div>
 					<div class="funnel-arrow-row">
-						<span>↓ 65% of tenants need moving help — they're relocating, not just renewing</span>
+						<span>↓ Tenants who need moving help — relocating, not just renewing · <em>Assumption: 40–65% · base: 65%</em></span>
 					</div>
 					<div class="funnel-row">
 						<div class="funnel-label">
 							<strong>Tenants who see the moving prompt</strong>
-							<span>Those who need help and are shown the "Plan your move" card after signing</span>
+							<span>Shown the "Plan your move" card after signing · <em>base: ~273/month</em></span>
 						</div>
 						<div class="funnel-val">
 							<span class="big">~273</span>
@@ -963,12 +970,12 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 						</div>
 					</div>
 					<div class="funnel-arrow-row">
-						<span>↓ 35% opt in and book a mover through Rendin (conservative — high-trust, pre-filled context)</span>
+						<span>↓ Opt in and book through Rendin · <em>Assumption: 10–15% pilot · 25–35% upside · base: 35%</em></span>
 					</div>
 					<div class="funnel-row">
 						<div class="funnel-label">
 							<strong>Confirmed bookings via Rendin</strong>
-							<span>Tenants who complete a moving booking through the platform. This is the shared engine for all three revenue streams below.</span>
+							<span>Shared engine for all three revenue streams below · <em>base: ~95/month</em></span>
 						</div>
 						<div class="funnel-val">
 							<span class="big">~95</span>
@@ -977,70 +984,82 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					</div>
 				</div>
 
-				<p style="margin: 28px 0 16px; font-size: 0.75rem; color: var(--muted); font-family: 'Trebuchet MS', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;">↓ Three revenue streams flow from these 95 bookings</p>
+				<h3 style="font-size: 1.1rem; margin: 32px 0 12px; color: var(--text);">Scenario sensitivity — Option B commission revenue (Estonia, year 1)</h3>
 
-				<div class="card-grid card-grid-3" style="margin-bottom: 16px;">
-					<div class="cs-card" style="border-top: 3px solid var(--accent);">
-						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Option A · Moving Installments</p>
-						<p>Tenant's full moving cost (~€200) split into monthly installments of ~€17 on their Rendin invoice. Rendin pays the mover and recovers the cost over 12 months. Each opted-in cohort keeps compounding as new tenants join each month.</p>
-						<div style="border-top: 1px solid rgba(31,35,48,0.08); padding-top: 12px; margin-top: 14px;">
-							<span style="font-size: 1.5rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">€19,380</span>
-							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">collected on the 12th month · 1,140 tenants paying simultaneously</span>
-						</div>
-						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">1,140 tenants × €17 · Rendin margin ~5–8% net</p>
-					</div>
-					<div class="cs-card" style="border-top: 3px solid rgba(45, 140, 100, 0.8);">
-						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 100, 60, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Option B · Partner Commission</p>
-						<p>Moving company pays Rendin ~12% of the booked move value. Avg move = €250. Tenant pays nothing extra — this comes entirely from the partner.</p>
-						<div style="border-top: 1px solid rgba(31,35,48,0.08); padding-top: 12px; margin-top: 14px;">
-							<span style="font-size: 1.5rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">€2,850</span>
-							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">/ month · €34k / year</span>
-						</div>
-						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">95 × €250 × 12% = €2,850</p>
-					</div>
-					<div class="cs-card" style="border-top: 3px solid rgba(30, 77, 140, 0.7);">
-						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 55, 120, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Option C · Placement Fee</p>
-						<p>Flat monthly fee paid by 2 vetted moving partners for priority placement in the widget. Not tied to booking volume — predictable regardless of opt-in rate.</p>
-						<div style="border-top: 1px solid rgba(31,35,48,0.08); padding-top: 12px; margin-top: 14px;">
-							<span style="font-size: 1.5rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">€600</span>
-							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">/ month · €7.2k / year</span>
-						</div>
-						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">2 partners × €300/month flat</p>
-					</div>
-				</div>
+				<table class="partner-table" style="margin: 0 0 24px;">
+					<thead>
+						<tr>
+							<th>Scenario</th>
+							<th>Estonia share</th>
+							<th>Need moving help</th>
+							<th>Booking conversion</th>
+							<th>Bookings/month</th>
+							<th style="text-align: right;">Net revenue / year</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Conservative</strong></td>
+							<td>60%</td>
+							<td>40%</td>
+							<td>10%</td>
+							<td>~14</td>
+							<td style="text-align: right; color: var(--muted);">~€5k</td>
+						</tr>
+						<tr>
+							<td><strong>Base</strong></td>
+							<td>70%</td>
+							<td>65%</td>
+							<td>35%</td>
+							<td>~95</td>
+							<td style="text-align: right; color: var(--text); font-weight: 600;">~€34k</td>
+						</tr>
+						<tr>
+							<td><strong>Upside</strong></td>
+							<td>75%</td>
+							<td>65%</td>
+							<td>45%</td>
+							<td>~132</td>
+							<td style="text-align: right; color: rgba(20,100,60,0.85);">~€47k</td>
+						</tr>
+					</tbody>
+				</table>
 
-				<div class="cs-card" style="margin-bottom: 0;">
-					<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 16px;">Why these can stack — they come from different pockets</p>
-					<div class="card-grid card-grid-3">
-						<div>
-							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Option A</p>
-							<p style="font-size: 0.88rem;"><strong style="color: var(--text);">Tenant pays</strong> the mover's full cost in monthly installments of ~€16–17, added to their Rendin invoice. Rendin pays the mover upfront and recovers the cost gradually. The moving company receives a lump sum from Rendin.</p>
+				<p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 28px;">The conservative case assumes the feature launches with poor discoverability and no established partner trust — essentially a cold start. The base case assumes the prompt is well-placed and partners are already vetted. The upside case is realistic by month 6–9 if early conversion data supports it. Option A (installments) and Option C (placement fee) are not shown here — their sensitivity is lower since A compounds regardless of monthly conversion rate and C is flat.</p>
+
+				<p style="margin: 0 0 16px; font-size: 0.75rem; color: var(--muted); font-family: 'Trebuchet MS', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;">↓ V1 revenue — referral commission from these 95 bookings</p>
+
+				<div class="cs-card" style="border-top: 3px solid var(--accent); margin-bottom: 12px;">
+					<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+						<div style="flex: 1;">
+							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">V1 · Partner Commission</p>
+							<p>Moving company pays Rendin ~12% of each booked move. <strong>The tenant pays nothing extra</strong> — the commission comes entirely out of the partner's margin. Rendin carries no credit risk, no billing logic, no collections. The partner benefits from a warm lead with move-in date and address already known.</p>
+							<p style="font-size: 0.88rem; color: var(--muted); margin-top: 8px;">On an average €250 move, this is ~€25–30 per booking. At 95 bookings/month (base case, Estonia), that's ~€2,850/month. The model resets each month — no compounding, no carry.</p>
 						</div>
-						<div>
-							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 100, 60, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Option B</p>
-							<p style="font-size: 0.88rem;"><strong style="color: var(--text);">Moving company pays</strong> ~€30 referral commission to Rendin after the job is completed. The tenant never sees this. It comes out of the mover's margin, not the tenant's invoice.</p>
-						</div>
-						<div>
-							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 55, 120, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Option C</p>
-							<p style="font-size: 0.88rem;"><strong style="color: var(--text);">Moving company pays</strong> a flat €300/month for priority placement — regardless of how many bookings happen that month. Completely independent of booking volume.</p>
-						</div>
-					</div>
-					<div style="border-top: 1px solid rgba(31,35,48,0.08); margin-top: 20px; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-						<p style="font-size: 0.88rem; color: var(--muted); margin: 0; max-width: 560px;">A and B both flow from the same 95 bookings but are charged to different parties — no double-charging. Option A is a pass-through with a 10% margin; the €125,970 collected across year 1 is not profit — ~€12,600 is. C is independent of bookings entirely.</p>
 						<div style="text-align: right; flex-shrink: 0;">
-							<span style="font-size: 1.8rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">~€51k</span>
-							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.04em;">Rendin net · year 1 · Estonia · A + B + C</span>
+							<span style="font-size: 1.8rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">~€34k</span>
+							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">year 1 · Estonia · base case</span>
 						</div>
 					</div>
 				</div>
 
-				<p style="margin-top: 24px;">
-					Option C is worth noting as a floor: even if tenant opt-in rates disappoint in month one, Rendin still earns €600/month from partners paying for visibility. A and B scale with bookings; C does not — so the revenue model has a predictable base regardless of early conversion performance.
-				</p>
+				<div class="cs-card" style="margin-bottom: 0; background: rgba(255,251,245,0.5);">
+					<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 14px;">Phase 2 options — only if V1 conversion and NPS are strong</p>
+					<div class="card-grid card-grid-2">
+						<div>
+							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Placement fee · after 3–6 months</p>
+							<p style="font-size: 0.88rem; color: var(--muted);">Partners pay a flat monthly fee for priority placement. Adds a predictable floor (~€7k/year from 2 partners) independent of booking volume. Only worth introducing once partners have seen referral value.</p>
+						</div>
+						<div>
+							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Installment financing · later adjacency</p>
+							<p style="font-size: 0.88rem; color: var(--muted);">Spreading the tenant's moving cost over their tenancy mirrors Rendin's founding model. But it introduces credit risk, collections, billing logic, and legal changes — a different product. Only worth exploring once the referral layer has proven retention and NPS.</p>
+						</div>
+					</div>
+				</div>
 
 				<div class="callout">
-					<p class="callout-label">The Poland multiplier</p>
-					<p>Poland's rental market is roughly 10x Estonia's by population, and Rendin has stated it as an expansion priority. The same three-stream model applied to 2,000 contracts/month in Poland projects to <strong>~€180–220k/year</strong> — with near-zero additional build cost, since the feature and partner framework are already in place.</p>
+					<p class="callout-label">Poland — larger upside, separate validation needed</p>
+					<p>Poland offers larger theoretical upside, but expansion economics should not be extrapolated from population alone. Conversion rates, partner quality, tax treatment, and local service norms would each need separate validation. The feature framework built in Estonia would transfer — but product-market fit would not be assumed.</p>
 				</div>
 			</section>
 
@@ -1159,102 +1178,50 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					</tbody>
 				</table>
 
-				<h3 style="font-size: 1.2rem; margin: 36px 0 8px; color: var(--text);">Revenue model options</h3>
-				<p style="margin-bottom: 24px;">Three complementary levers — each independent, all stackable. Option A is the most structurally interesting: it mirrors Rendin's own founding idea of replacing a large upfront cost with a small monthly payment — applied now to the cost of moving itself.</p>
+				<h3 style="font-size: 1.2rem; margin: 36px 0 8px; color: var(--text);">V1 revenue model</h3>
+				<p style="margin-bottom: 24px;">Start lean. V1 is a pure referral model — no financing, no billing infrastructure, no credit exposure. Rendin earns a commission from the moving partner on each confirmed booking. The tenant pays nothing extra. Booking happens off-platform.</p>
 
-				<div class="rev-card" style="display: block; border-left: 3px solid var(--accent);">
-					<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px;">
-						<h4 style="margin: 0;">Option A — Moving Cost Paid in Installments</h4>
-						<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--accent-strong); letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; padding-top: 3px;">RECOMMENDED</span>
+				<div class="rev-card" style="border-left: 3px solid var(--accent);">
+					<div>
+						<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+							<h4 style="margin: 0;">Referral Commission — V1</h4>
+							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--accent-strong); letter-spacing: 0.06em;">RECOMMENDED</span>
+						</div>
+						<p>Rendin earns 10–12% of each booked move value, paid by the moving partner after the job is confirmed. The tenant never sees this fee — it comes out of the partner's margin, not the tenant's invoice. No payment infrastructure needed on Rendin's side.</p>
+						<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">The partner gets a warm lead: move-in date known, destination address known, tenant identity verified. That context makes a 10–12% commission easy to justify — the conversion cost is low compared to cold acquisition. Revenue resets monthly with new bookings; no compounding, no carry risk.</p>
 					</div>
-					<p>When a tenant opts in, they don't pay the mover upfront. Instead, the full moving cost — say <strong>€200 for a standard local move</strong> — is spread into monthly installments of <strong>€17/month for 12 months</strong>, added to their existing Rendin invoice. Rendin pays the moving company directly, then recovers the cost gradually from the tenant over the tenancy.</p>
-					<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">This mirrors Rendin's own founding logic: replace a large upfront cost with a small monthly line. No lump-sum moving bill. No deposit. The tenant starts their tenancy with zero financial shock. Rendin charges a 10% coordination spread — it collects €220 total (€18.33/month) and pays the mover €200 — earning €20 net per tenant over the tenancy.</p>
-
-					<div style="margin-top: 24px;">
-						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;">How the cash flow builds month by month — Estonia only</p>
-						<table class="partner-table" style="margin: 0;">
-							<thead>
-								<tr>
-									<th>Month</th>
-									<th>New opt-ins</th>
-									<th>Total active tenants paying</th>
-									<th style="text-align: right;">Monthly collection</th>
-									<th style="text-align: right;">Rendin net margin (10%)</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><strong>Month 1</strong></td>
-									<td>95</td>
-									<td>95</td>
-									<td style="text-align: right;">€1,615</td>
-									<td style="text-align: right; color: rgba(20,100,60,0.85);">€162</td>
-								</tr>
-								<tr>
-									<td><strong>Month 2</strong></td>
-									<td>95 more</td>
-									<td>190</td>
-									<td style="text-align: right;">€3,230</td>
-									<td style="text-align: right; color: rgba(20,100,60,0.85);">€323</td>
-								</tr>
-								<tr>
-									<td><strong>Month 3</strong></td>
-									<td>95 more</td>
-									<td>285</td>
-									<td style="text-align: right;">€4,845</td>
-									<td style="text-align: right; color: rgba(20,100,60,0.85);">€485</td>
-								</tr>
-								<tr>
-									<td style="color: var(--muted);" colspan="2">Month 4–11</td>
-									<td style="color: var(--muted);">380 → 1,045</td>
-									<td style="text-align: right; color: var(--muted);">€6,460 → €17,765</td>
-									<td style="text-align: right; color: var(--muted);">€646 → €1,777</td>
-								</tr>
-								<tr style="background: var(--text);">
-									<td style="color: #f4efe7;"><strong>Month 12</strong></td>
-									<td style="color: rgba(244,239,231,0.55);">95 more</td>
-									<td style="color: rgba(244,239,231,0.55);">1,140 tenants</td>
-									<td style="text-align: right; color: #f4efe7;">€19,380</td>
-									<td style="text-align: right; color: #6fcf97;">€1,938</td>
-								</tr>
-								<tr style="background: var(--panel-strong);">
-									<td colspan="3"><strong>Year 1 total collected</strong></td>
-									<td style="text-align: right;"><strong>€125,970</strong></td>
-									<td style="text-align: right; color: rgba(20,100,60,0.85);"><strong>~€12,600</strong></td>
-								</tr>
-							</tbody>
-						</table>
-						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">The €125,970 collected is mostly pass-through — Rendin is disbursing it to movers. The €12,600 is Rendin's actual net margin after paying movers, based on a 10% spread. Month 1 feels small — €162 — but the model requires no additional effort to grow. Every new cohort adds to the base automatically.</p>
+					<div class="rev-est">
+						<span class="amount">~€34k</span>
+						<span class="freq">year 1 · Estonia · base case</span>
 					</div>
 				</div>
 
 				<div class="rev-card">
 					<div>
-						<h4>Option B — Referral Commission from Moving Partner</h4>
-						<p>In parallel, Rendin earns 10–12% of the booked move value from the moving company — paid by the partner, not the tenant. The tenant pays nothing extra. The moving company benefits from a warm, high-intent lead with move-in date and address already known, making the commission straightforward to justify to partners.</p>
-						<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">On an average €250 move, this is ~€25–30 per booking. At 95 bookings/month (Estonia), that's roughly €2,600/month. Unlike Option A this does not compound — it resets each month based on new bookings only.</p>
+						<h4>Placement Fee — Phase 2</h4>
+						<p>Once the feature has 3–6 months of conversion data, Rendin can offer a paid priority slot in the widget — a flat monthly fee of €200–400 per partner. Introduced only after partners have seen referral value and Rendin can demonstrate conversion rates. Organic ranking still exists; the fee buys visibility, not a pass on vetting.</p>
 					</div>
 					<div class="rev-est">
-						<span class="amount">~€31k</span>
-						<span class="freq">year 1 · Estonia</span>
-					</div>
-				</div>
-
-				<div class="rev-card">
-					<div>
-						<h4>Option C — Partner Placement Fee (Phase 2)</h4>
-						<p>Once the feature has 3–6 months of conversion data, Rendin can offer moving companies a paid "priority slot" — appearing first in the recommendation widget for a flat monthly fee of €200–400. This is a separate, additive stream that doesn't affect the installment or commission models. Introduced only after proving value to partners.</p>
-						<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">Organic ranking still exists — a paying partner still has to meet the vetting criteria. The placement fee buys visibility, not a pass on quality.</p>
-					</div>
-					<div class="rev-est">
-						<span class="amount">~€8k</span>
+						<span class="amount">~€7k</span>
 						<span class="freq">year 1 · 2 partners</span>
 					</div>
 				</div>
 
+				<div class="rev-card" style="background: rgba(255,251,245,0.5); border-style: dashed;">
+					<div>
+						<h4 style="color: var(--muted);">Installment Financing — Later Adjacency</h4>
+						<p style="color: var(--muted);">Spreading the tenant's moving cost over their tenancy mirrors Rendin's founding model. The idea is worth noting, but it introduces a different class of complexity: credit risk, collections, billing logic, partner payout timing, and legal changes to the tenancy agreement. If conversion and NPS are strong after V1, Rendin could explore this as a phase 2 product — not a feature.</p>
+					</div>
+					<div class="rev-est">
+						<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.88rem; color: var(--muted); display: block; text-align: right;">Phase 2</span>
+						<span class="freq">after V1 validation</span>
+					</div>
+				</div>
+
 				<div class="callout" style="background: var(--text); border-left: 3px solid var(--accent);">
-					<p class="callout-label" style="color: var(--accent);">Combined revenue picture — Estonia, year 1</p>
-					<p style="color: rgba(244,239,231,0.65);">Option A generates <strong style="color: #f4efe7;">~€12,600 net margin</strong> over year 1 from the 10% coordination spread — small in month 1 (€162), growing to €1,938/month by month 12 as cohorts accumulate. Option B adds ~€31k from partner commissions. Option C adds ~€7.2k from placement fees. <strong style="color: #f4efe7;">Combined net to Rendin: ~€51k in year 1</strong> — from a feature with no trucks, no staff, and no new insurance exposure. At Poland scale (year 2, ~2,000 contracts/month), the same model projects to <strong style="color: #f4efe7;">€200k+/year</strong>.</p>
+					<p class="callout-label" style="color: var(--accent);">V1 revenue picture — Estonia, year 1</p>
+					<p style="color: rgba(244,239,231,0.65);">Commission alone generates <strong style="color: #f4efe7;">~€34k/year</strong> at the base case — with no direct logistics operations, no billing infrastructure, and no credit exposure, though partner quality and referral-related trust risk would still need active management. Poland would require separate validation — conversion, partner quality, and local service norms cannot be assumed from Estonia results.</p>
+					<p style="color: rgba(244,239,231,0.5); margin-top: 10px; font-size: 0.88rem;">These monetization options are structurally distinct, but may create tension if combined. In practice, Rendin would likely start with one primary model and test whether additional monetization affects partner willingness or user trust before layering anything on top.</p>
 				</div>
 			</section>
 
@@ -1263,77 +1230,88 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 				<p class="cs-section-num">06 — Metrics & Risks</p>
 				<h2>How to know<br><em>if it's working</em></h2>
 
-				<div class="metric-grid">
-					<div class="metric-item">
-						<h4>North Star</h4>
-						<ul>
-							<li>
-								Moving feature conversion rate — target ≥30%
-								<span class="metric-explain">Of every 100 tenants who see the "Plan your move" prompt, at least 30 should go on to book a mover through it. This is the headline number that proves the feature is worth keeping.</span>
-							</li>
-							<li>
-								Post-move satisfaction vs. tenants who didn't use the feature
-								<span class="metric-explain">Both groups are asked "would you recommend Rendin?" after move-in. If tenants who used the moving feature score higher, it means it genuinely improved how they feel about Rendin — not just the move itself.</span>
-							</li>
-							<li>
-								Monthly referral income vs. goal
-								<span class="metric-explain">Is the commission earned from moving bookings hitting the monthly target? If not, something in the funnel needs fixing.</span>
-							</li>
+				<p style="margin-bottom: 24px;">Metrics are ordered sequentially — each one sits earlier in the funnel than the next. A drop at any step narrows the diagnosis before you reach revenue.</p>
+
+				<table class="partner-table" style="margin: 0 0 32px;">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Metric</th>
+							<th>What it tells you</th>
+							<th style="text-align: right;">Threshold to watch</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="color: var(--muted); font-family: 'Trebuchet MS', sans-serif; font-size: 0.8rem;">1</td>
+							<td><strong>Prompt view rate</strong></td>
+							<td style="color: var(--muted);">Share of eligible tenants who see the "Need help moving?" card after signing. Confirms the prompt is surfaced correctly before anything else is evaluated.</td>
+							<td style="text-align: right; color: var(--muted); font-size: 0.85rem;">Baseline only — establish in week 1</td>
+						</tr>
+						<tr>
+							<td style="color: var(--muted); font-family: 'Trebuchet MS', sans-serif; font-size: 0.8rem;">2</td>
+							<td><strong>Prompt CTR</strong></td>
+							<td style="color: var(--muted);">Share of tenants who tap the card. Low CTR means the message or timing is wrong — fix this before looking at anything downstream.</td>
+							<td style="text-align: right;"><span class="badge badge-lo">&lt;10% → messaging problem</span></td>
+						</tr>
+						<tr>
+							<td style="color: var(--muted); font-family: 'Trebuchet MS', sans-serif; font-size: 0.8rem;">3</td>
+							<td><strong>Quote form completion rate</strong></td>
+							<td style="color: var(--muted);">Of those who clicked, how many submitted the quote form. A big drop here means the form asks for something tenants don't have to hand, or the pre-fill isn't working.</td>
+							<td style="text-align: right;"><span class="badge badge-lo">&lt;40% → form friction</span></td>
+						</tr>
+						<tr>
+							<td style="color: var(--muted); font-family: 'Trebuchet MS', sans-serif; font-size: 0.8rem;">4</td>
+							<td><strong>Quote-to-booking rate</strong></td>
+							<td style="color: var(--muted);">Share of quote requests that result in a confirmed booking. Measures whether partner pricing and availability are competitive once a tenant has shown intent.</td>
+							<td style="text-align: right;"><span class="badge badge-lo">&lt;8% after optimisation → weak demand</span></td>
+						</tr>
+						<tr>
+							<td style="color: var(--muted); font-family: 'Trebuchet MS', sans-serif; font-size: 0.8rem;">5</td>
+							<td><strong>Complaint rate per 100 bookings</strong></td>
+							<td style="color: var(--muted);">Tenants who contact Rendin about a partner quality issue after the move. This has a hard cap — not a percentage target — because even a small number of unresolved complaints affects brand trust disproportionately.</td>
+							<td style="text-align: right;"><span class="badge badge-lo">&gt;3% → partner quality issue</span></td>
+						</tr>
+						<tr>
+							<td style="color: var(--muted); font-family: 'Trebuchet MS', sans-serif; font-size: 0.8rem;">6</td>
+							<td><strong>Post-move NPS or CSAT</strong></td>
+							<td style="color: var(--muted);">Feature cohort vs. control group after move-in. If tenants who used the prompt score no differently from those who didn't, the feature isn't adding perceived value even when it works technically.</td>
+							<td style="text-align: right;"><span class="badge badge-hi">Feature cohort ≥ control</span></td>
+						</tr>
+						<tr>
+							<td style="color: var(--muted); font-family: 'Trebuchet MS', sans-serif; font-size: 0.8rem;">7</td>
+							<td><strong>Incremental revenue per eligible tenant</strong></td>
+							<td style="color: var(--muted);">Commission earned divided by total eligible tenants (not just those who booked). The denominator matters — this normalises revenue against the full addressable base, not just opt-ins.</td>
+							<td style="text-align: right;"><span class="badge badge-hi">Track monthly from launch</span></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3 style="font-size: 1.1rem; margin: 0 0 16px; color: var(--text);">Decision gates — 3-month pilot</h3>
+
+				<div class="card-grid card-grid-3">
+					<div class="cs-card" style="border-top: 3px solid rgba(195,88,36,0.7);">
+						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(140,50,20,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Kill</p>
+						<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
+							<li style="font-size: 0.88rem; color: var(--muted);">CTR &lt;10% after two messaging iterations</li>
+							<li style="font-size: 0.88rem; color: var(--muted);">Booking conversion &lt;8% after form optimisation</li>
+							<li style="font-size: 0.88rem; color: var(--muted);">Complaint rate &gt;3% with no clear partner fix</li>
 						</ul>
 					</div>
-					<div class="metric-item">
-						<h4>Product Health</h4>
-						<ul>
-							<li>
-								How many tenants click the moving prompt
-								<span class="metric-explain">After signing, a card appears saying "Need help moving?" — what share of tenants actually tap it? A very low rate means the message or placement is wrong, before anything else is evaluated.</span>
-							</li>
-							<li>
-								How many complete the quote request form
-								<span class="metric-explain">Of the people who clicked, how many filled in the form and hit submit? A big drop here usually means the form asks for too much, or information people don't have to hand.</span>
-							</li>
-							<li>
-								Where in the booking process people abandon
-								<span class="metric-explain">There are several steps: click → fill form → pick a mover → confirm. Knowing the exact step where most people leave tells you what to fix — rather than guessing.</span>
-							</li>
-							<li>
-								Whether the moving feature leads to faster, cleaner move-ins
-								<span class="metric-explain">Rendin has a digital move-in checklist both parties complete together. Do tenants who used a vetted mover complete it more often? If yes, a smoother move correlates with better documentation — which protects both sides if there's a later dispute.</span>
-							</li>
+					<div class="cs-card" style="border-top: 3px solid rgba(181,98,10,0.7);">
+						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(130,70,5,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Iterate</p>
+						<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
+							<li style="font-size: 0.88rem; color: var(--muted);">CTR 10–20% — test prompt copy, timing, or placement</li>
+							<li style="font-size: 0.88rem; color: var(--muted);">Quote completion &lt;40% — reduce form fields, improve pre-fill</li>
+							<li style="font-size: 0.88rem; color: var(--muted);">NPS neutral — feature works but adds no perceived value yet</li>
 						</ul>
 					</div>
-					<div class="metric-item">
-						<h4>Business Health</h4>
-						<ul>
-							<li>
-								Partner quality over time
-								<span class="metric-explain">Each year, Rendin re-checks its moving partners — do they still meet the required rating, insurance, and service standards? A declining pass rate is an early warning that quality is slipping before tenants start complaining.</span>
-							</li>
-							<li>
-								Whether partners pay their referral fees reliably
-								<span class="metric-explain">If a moving company consistently pays late or not at all, it signals either cash flow problems or that the partner doesn't value the arrangement. A canary metric before bigger issues surface.</span>
-							</li>
-							<li>
-								Tenant complaints about referred movers
-								<span class="metric-explain">How many tenants come back to Rendin saying "the mover you recommended was terrible"? Even one or two unresolved complaints can damage trust disproportionately — so this has a hard cap, not just a percentage threshold.</span>
-							</li>
-						</ul>
-					</div>
-					<div class="metric-item">
-						<h4>Insurance Impact</h4>
-						<ul>
-							<li>
-								Do vetted-mover tenants file fewer damage claims?
-								<span class="metric-explain">Rendin's core business is covering tenant-caused damage. If tenants who used a Rendin-referred mover cause less damage during move-in, that's a direct financial argument for the feature — it reduces Rendin's own payout exposure.</span>
-							</li>
-							<li>
-								How often move-in inspections lead to disagreements
-								<span class="metric-explain">When both parties walk through the apartment at move-in and sign off on its condition, "who caused that scratch" disputes become much easier to resolve. A lower dispute rate after launch suggests smoother handovers.</span>
-							</li>
-							<li>
-								How quickly both parties sign off on move-in condition
-								<span class="metric-explain">The faster landlord and tenant complete the digital inspection checklist after moving day, the less ambiguity there is about the apartment's state. Delays often mean one party is already uncomfortable — which tends to predict a claim later.</span>
-							</li>
+					<div class="cs-card" style="border-top: 3px solid var(--accent);">
+						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Scale</p>
+						<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
+							<li style="font-size: 0.88rem; color: var(--muted);">CTR ≥20% and booking conversion ≥15%</li>
+							<li style="font-size: 0.88rem; color: var(--muted);">Complaint rate &lt;2% across first 100 bookings</li>
+							<li style="font-size: 0.88rem; color: var(--muted);">Feature cohort NPS ≥ control group</li>
 						</ul>
 					</div>
 				</div>
@@ -1341,33 +1319,12 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 				<h3 style="font-size: 1.2rem; margin: 36px 0 16px; color: var(--text);">Risks</h3>
 
 				<div>
-					<div class="risk-item" style="flex-direction: column; align-items: stretch; gap: 14px;">
-						<div style="display: flex; gap: 18px; align-items: flex-start;">
-							<span class="risk-sev ptag ptag-pain" style="flex-shrink: 0; margin-top: 3px;">High</span>
-							<div class="risk-content">
-								<h4>Tenant cancels the tenancy before the moving cost is fully repaid</h4>
-								<p>This is the central credit risk of the installment model. If a tenant opts in, Rendin pays the mover €200 upfront, but the tenant leaves at month 5 — Rendin has collected ~€85 and is owed €115 it may not recover easily. At 95 opt-ins/month, even a 10% early exit rate creates a meaningful exposure. Four mitigations work in combination:</p>
-							</div>
+					<div class="risk-item">
+						<span class="risk-sev ptag ptag-pain">High</span>
+						<div class="risk-content">
+							<h4>Partner quality failure damages Rendin's brand</h4>
+							<p>A bad moving experience gets associated with Rendin even if it isn't Rendin's fault. The tenant recommended the mover through Rendin; the accountability feels shared. Mitigation: strict vetting criteria (insurance required, minimum 4.3★ Google rating, background-checked staff), annual re-qualification, and clear "Rendin Recommended" language — not "Rendin Guaranteed." Fast-offboarding clause for any partner with 2+ tenant complaints within a rolling 90-day window.</p>
 						</div>
-						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-							<div class="cs-card" style="padding: 16px 18px;">
-								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 1 · Delayed payout</p>
-								<p style="font-size: 0.88rem;">Rendin does not pay the mover on day 1. Instead it pays after month 3 or 4, once enough installments have been collected to cover the full cost. The tenant still gets the service immediately — the mover agrees to a 90-day payment term in exchange for guaranteed referral volume.</p>
-							</div>
-							<div class="cs-card" style="padding: 16px 18px;">
-								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20,100,60,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 2 · Tenancy obligation</p>
-								<p style="font-size: 0.88rem;">The outstanding moving balance is written into the Rendin agreement as a financial obligation — treated the same as unpaid rent if the tenant exits early. Rendin already has a recovery mechanism for rent arrears and can apply the same process without building anything new.</p>
-							</div>
-							<div class="cs-card" style="padding: 16px 18px;">
-								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20,55,120,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 3 · Partial upfront payment</p>
-								<p style="font-size: 0.88rem;">Rendin only finances 70% of the move via installments. The tenant pays 30% — roughly €60 on move day — reducing Rendin's exposure from €200 to €140 per tenant. The move-in is still far cheaper than paying the full amount upfront, so the proposition remains compelling.</p>
-							</div>
-							<div class="cs-card" style="padding: 16px 18px;">
-								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(181,98,10,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 4 · Insurance backstop</p>
-								<p style="font-size: 0.88rem;">Rendin already underwrites rental income risk with ERGO Insurance. The moving installment default risk is structurally similar — a tenant financial obligation that may not be honoured. This could fold into the existing insurance framework, pricing in the default rate at the portfolio level rather than per tenant.</p>
-							</div>
-						</div>
-						<p style="font-size: 0.88rem; color: var(--muted);">In practice, Mitigations 1 and 2 together are sufficient for a first version — delayed payout removes the immediate cash risk, and the tenancy obligation gives a legal recovery path. Mitigations 3 and 4 are phase 2 refinements as volume grows.</p>
 					</div>
 					<div class="risk-item">
 						<span class="risk-sev ptag ptag-need">Medium</span>
@@ -1396,23 +1353,26 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 			<!-- 07 Conclusion -->
 			<section class="cs-conclusion">
 				<p class="cs-section-num">07 — Conclusion</p>
-				<h2>The opportunity<br>in a sentence</h2>
+				<h2>Plausible.<br><em>Not yet proven.</em></h2>
 				<p>
-					Rendin has a precise intent signal — move-in date, address, verified tenant identity — that no moving company in Estonia or Poland possesses. A lightweight referral feature turns this into a zero-capex revenue stream, a brand-consistent user experience, and a plausible reduction in insurance claims through better-documented, less chaotic move-ins.
+					Rendin may be sitting on one of the stronger intent signals in Estonia's moving journey — move-in date, address, verified tenant identity — that no moving company currently holds. That is the hypothesis. Whether tenants would act on a post-signing moving prompt, and whether partners would pay meaningfully for those referrals, remains untested.
+				</p>
+				<p>
+					The strongest next step is a lightweight Estonia pilot: one or two curated partners, the prompt surfaced after contract signing, success measured through CTR, quote completion rate, booking conversion, complaint rate, and post-move satisfaction. That data would confirm whether post-signing services are a real expansion surface for Rendin — or a plausible idea that doesn't hold in practice.
 				</p>
 
 				<div class="conclusion-grid">
 					<div class="conclusion-point">
-						<h4>For founders</h4>
-						<p>This is an embedded services play. Rendin already owns the trust layer. The moving referral is a wedge into a broader move-in bundle — storage, internet setup, furniture — that could become a real revenue line at scale.</p>
+						<h4>What this study shows</h4>
+						<p>The gap is real and the model is structurally sound. The referral approach keeps V1 lean — no logistics, no credit exposure — and the signal Rendin already holds is genuinely rare in this market.</p>
 					</div>
 					<div class="conclusion-point">
-						<h4>For investors</h4>
-						<p>The referral model is asset-light with no additional burn. Adding a €40–200k adjacent revenue stream from the same customer base is accretive — and replicates to each new market automatically.</p>
+						<h4>What needs validation</h4>
+						<p>Tenant opt-in rate, partner willingness to pay commission, and whether the Rendin brand extends credibly into a new category. None of these can be assumed from the analysis alone.</p>
 					</div>
 					<div class="conclusion-point">
-						<h4>For Rendin</h4>
-						<p>Whether or not this specific feature ships, the post-signing journey is an underused canvas. A tenant who has a smooth, Rendin-helped move-in is the most likely to leave a five-star review — and eventually become a landlord on the platform.</p>
+						<h4>Decision criteria for continuing</h4>
+						<p>If a 3-month pilot shows ≥15% booking conversion and no measurable drop in post-signing NPS, the model is worth scaling. If not, the data would still clarify whether the problem or the solution needs rethinking.</p>
 					</div>
 				</div>
 
