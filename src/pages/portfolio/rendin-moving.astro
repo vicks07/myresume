@@ -984,7 +984,7 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					</div>
 				</div>
 
-				<h3 style="font-size: 1.1rem; margin: 32px 0 12px; color: var(--text);">Scenario sensitivity — Option B commission revenue (Estonia, year 1)</h3>
+				<h3 style="font-size: 1.1rem; margin: 32px 0 12px; color: var(--text);">Scenario sensitivity — commission revenue (Estonia, year 1)</h3>
 
 				<table class="partner-table" style="margin: 0 0 24px;">
 					<thead>
@@ -1025,7 +1025,7 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					</tbody>
 				</table>
 
-				<p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 28px;">The conservative case assumes the feature launches with poor discoverability and no established partner trust — essentially a cold start. The base case assumes the prompt is well-placed and partners are already vetted. The upside case is realistic by month 6–9 if early conversion data supports it. Option A (installments) and Option C (placement fee) are not shown here — their sensitivity is lower since A compounds regardless of monthly conversion rate and C is flat.</p>
+				<p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 28px;">The conservative case assumes the feature launches with poor discoverability and no established partner trust — essentially a cold start. The base case assumes the prompt is well-placed and partners are already vetted. The upside case is realistic by month 6–9 if early conversion data supports it.</p>
 
 				<p style="margin: 0 0 16px; font-size: 0.75rem; color: var(--muted); font-family: 'Trebuchet MS', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;">↓ V1 revenue — referral commission from these 95 bookings</p>
 
@@ -1044,17 +1044,8 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 				</div>
 
 				<div class="cs-card" style="margin-bottom: 0; background: rgba(255,251,245,0.5);">
-					<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 14px;">Phase 2 options — only if V1 conversion and NPS are strong</p>
-					<div class="card-grid card-grid-2">
-						<div>
-							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Placement fee · after 3–6 months</p>
-							<p style="font-size: 0.88rem; color: var(--muted);">Partners pay a flat monthly fee for priority placement. Adds a predictable floor (~€7k/year from 2 partners) independent of booking volume. Only worth introducing once partners have seen referral value.</p>
-						</div>
-						<div>
-							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Installment financing · later adjacency</p>
-							<p style="font-size: 0.88rem; color: var(--muted);">Spreading the tenant's moving cost over their tenancy mirrors Rendin's founding model. But it introduces credit risk, collections, billing logic, and legal changes — a different product. Only worth exploring once the referral layer has proven retention and NPS.</p>
-						</div>
-					</div>
+					<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 10px;">Phase 2 — only if V1 conversion and NPS are strong</p>
+					<p style="font-size: 0.88rem; color: var(--muted);">Partners pay a flat monthly fee for priority placement. Adds a predictable floor (~€7k/year from 2 partners) independent of booking volume. Only worth introducing once partners have seen referral value from V1.</p>
 				</div>
 
 				<div class="callout">
@@ -1207,18 +1198,7 @@ const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
 					</div>
 				</div>
 
-				<div class="rev-card" style="background: rgba(255,251,245,0.5); border-style: dashed;">
-					<div>
-						<h4 style="color: var(--muted);">Installment Financing — Later Adjacency</h4>
-						<p style="color: var(--muted);">Spreading the tenant's moving cost over their tenancy mirrors Rendin's founding model. The idea is worth noting, but it introduces a different class of complexity: credit risk, collections, billing logic, partner payout timing, and legal changes to the tenancy agreement. If conversion and NPS are strong after V1, Rendin could explore this as a phase 2 product — not a feature.</p>
-					</div>
-					<div class="rev-est">
-						<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.88rem; color: var(--muted); display: block; text-align: right;">Phase 2</span>
-						<span class="freq">after V1 validation</span>
-					</div>
-				</div>
-
-				<div class="callout" style="background: var(--text); border-left: 3px solid var(--accent);">
+<div class="callout" style="background: var(--text); border-left: 3px solid var(--accent);">
 					<p class="callout-label" style="color: var(--accent);">V1 revenue picture — Estonia, year 1</p>
 					<p style="color: rgba(244,239,231,0.65);">Commission alone generates <strong style="color: #f4efe7;">~€34k/year</strong> at the base case — with no direct logistics operations, no billing infrastructure, and no credit exposure, though partner quality and referral-related trust risk would still need active management. Poland would require separate validation — conversion, partner quality, and local service norms cannot be assumed from Estonia results.</p>
 					<p style="color: rgba(244,239,231,0.5); margin-top: 10px; font-size: 0.88rem;">These monetization options are structurally distinct, but may create tension if combined. In practice, Rendin would likely start with one primary model and test whether additional monetization affects partner willingness or user trust before layering anything on top.</p>
