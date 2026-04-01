@@ -256,6 +256,18 @@ export const caseStudies = [
 	},
 ];
 
+export const productPortfolio = [
+	{
+		track: 'signal',
+		tag: 'Product Case Study',
+		title: 'Rendin × Moving Services',
+		subtitle: 'The gap after the signature',
+		summary:
+			'Rendin knows every tenant\'s move-in date and address. No moving company in Estonia has this data. This case study analyses what a lightweight referral feature would look like — the UX, the partner model, and the revenue math.',
+		url: '/portfolio/rendin-moving',
+	},
+];
+
 export const sideProjects = [
 	{
 		name: 'NoFluff AI',

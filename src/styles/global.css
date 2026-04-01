@@ -526,6 +526,54 @@ summary:hover {
 	gap: 12px;
 }
 
+/* Portfolio case study link card */
+.portfolio-case {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 24px;
+	text-decoration: none;
+	color: var(--text);
+	transition: transform 180ms ease;
+}
+
+.portfolio-case:hover {
+	transform: translateY(-2px);
+}
+
+.portfolio-case-left {
+	flex: 1;
+}
+
+.portfolio-case-title {
+	margin: 8px 0 2px;
+	font-size: 1.45rem;
+}
+
+.portfolio-case-sub {
+	margin: 0 0 10px;
+	font-style: italic;
+	color: var(--accent);
+	font-size: 1rem;
+}
+
+.portfolio-case-summary {
+	margin: 0;
+	font-size: 1.0rem;
+	line-height: 1.65;
+	color: var(--muted);
+}
+
+.portfolio-case-cta {
+	font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+	font-size: 0.85rem;
+	color: var(--accent-strong);
+	white-space: nowrap;
+	flex-shrink: 0;
+	padding-top: 4px;
+}
+
 [hidden] {
 	display: none !important;
 }
