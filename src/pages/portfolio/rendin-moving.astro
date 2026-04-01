@@ -1,0 +1,1434 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import { profile } from '../../data/site';
+
+const assetBase = `${import.meta.env.BASE_URL}/`.replace(/\/+$/, '/');
+---
+
+<Layout
+	title="Rendin × Moving — Product Case Study | Vikram Thalithaje"
+	description="A product opportunity analysis: how Rendin could use its move-in date signal to add a moving referral layer and close the tenant journey."
+>
+	<style>
+		/* ── Case study shell ── */
+		.cs-shell {
+			position: relative;
+			max-width: 1060px;
+			margin: 0 auto;
+			padding: 24px;
+		}
+
+		/* ── Topbar ── */
+		.cs-topbar {
+			position: sticky;
+			top: 20px;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 20px;
+			padding: 14px 18px;
+			margin-bottom: 28px;
+			background: rgba(255, 248, 239, 0.72);
+			border: 1px solid rgba(255, 255, 255, 0.55);
+			border-radius: 999px;
+			backdrop-filter: blur(18px);
+			box-shadow: 0 12px 40px rgba(45, 32, 22, 0.08);
+		}
+
+		.cs-brand {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-weight: 700;
+			text-decoration: none;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			font-size: 0.85rem;
+			color: var(--text);
+		}
+
+		.cs-nav {
+			display: flex;
+			gap: 18px;
+			flex-wrap: wrap;
+		}
+
+		.cs-nav a {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.88rem;
+			color: var(--muted);
+			text-decoration: none;
+		}
+
+		.cs-nav a:hover { color: var(--text); }
+
+		.cs-back {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.82rem;
+			color: var(--muted);
+			text-decoration: none;
+			letter-spacing: 0.04em;
+		}
+
+		.cs-back:hover { color: var(--accent); }
+
+		/* ── Hero ── */
+		.cs-hero {
+			padding: 48px 40px 44px;
+			margin-bottom: 0;
+		}
+
+		.cs-hero-tag {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.11em;
+			color: var(--accent-strong);
+			margin: 0 0 20px;
+		}
+
+		.cs-hero h1 {
+			font-size: clamp(2.6rem, 5.5vw, 5rem);
+			line-height: 0.95;
+			letter-spacing: -0.04em;
+			margin: 0 0 20px;
+			max-width: 700px;
+		}
+
+		.cs-hero h1 em {
+			font-style: italic;
+			color: var(--accent);
+		}
+
+		.cs-hero-sub {
+			font-size: 1.08rem;
+			color: var(--muted);
+			line-height: 1.7;
+			max-width: 640px;
+			margin: 0 0 36px;
+		}
+
+		.cs-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 28px;
+		}
+
+		.cs-meta-item {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+		}
+
+		.cs-meta-label {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: var(--muted);
+		}
+
+		.cs-meta-value {
+			font-size: 0.95rem;
+			font-weight: 600;
+			color: var(--text);
+		}
+
+		/* ── Sections ── */
+		.cs-section {
+			padding: 52px 40px;
+		}
+
+		.cs-section-num {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.11em;
+			color: var(--muted);
+			margin: 0 0 14px;
+		}
+
+		.cs-section h2 {
+			font-size: clamp(2rem, 4vw, 3.4rem);
+			line-height: 0.98;
+			letter-spacing: -0.03em;
+			margin: 0 0 28px;
+		}
+
+		.cs-section h2 em {
+			font-style: italic;
+			color: var(--accent);
+		}
+
+		.cs-section p {
+			font-size: 1.04rem;
+			line-height: 1.72;
+			color: var(--muted);
+			margin: 0 0 18px;
+		}
+
+		.cs-section p strong {
+			color: var(--text);
+			font-weight: 600;
+		}
+
+		.cs-section p:last-child { margin-bottom: 0; }
+
+		/* ── Callout ── */
+		.callout {
+			background: var(--panel-strong);
+			border-left: 3px solid var(--accent);
+			border-radius: 0 16px 16px 0;
+			padding: 22px 26px;
+			margin: 28px 0;
+		}
+
+		.callout-label {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: var(--accent-strong);
+			margin: 0 0 8px;
+		}
+
+		.callout p {
+			font-size: 1rem;
+			color: var(--text);
+			margin: 0;
+		}
+
+		/* ── Card grids ── */
+		.card-grid {
+			display: grid;
+			gap: 16px;
+			margin: 28px 0;
+		}
+
+		.card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+		.card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+		.cs-card {
+			background: var(--panel-strong);
+			border: 1px solid rgba(31, 35, 48, 0.08);
+			border-radius: 20px;
+			padding: 22px;
+		}
+
+		.cs-card-icon {
+			font-size: 22px;
+			margin-bottom: 12px;
+		}
+
+		.cs-card h4 {
+			font-size: 1.1rem;
+			margin: 0 0 8px;
+			color: var(--text);
+		}
+
+		.cs-card p {
+			font-size: 0.9rem;
+			color: var(--muted);
+			margin: 0;
+			line-height: 1.55;
+		}
+
+		/* ── Personas ── */
+		.persona {
+			display: grid;
+			grid-template-columns: 72px 1fr;
+			gap: 22px;
+			align-items: start;
+			background: var(--panel-strong);
+			border: 1px solid rgba(31, 35, 48, 0.08);
+			border-radius: 20px;
+			padding: 26px;
+			margin-bottom: 16px;
+		}
+
+		.persona-avatar {
+			width: 72px;
+			height: 72px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 28px;
+			flex-shrink: 0;
+		}
+
+		.persona-content h4 {
+			font-size: 1.25rem;
+			margin: 0 0 3px;
+		}
+
+		.persona-role {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.78rem;
+			color: var(--muted);
+			letter-spacing: 0.04em;
+			margin-bottom: 14px;
+		}
+
+		.persona-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-bottom: 14px;
+		}
+
+		.ptag {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.7rem;
+			padding: 4px 10px;
+			border-radius: 999px;
+			letter-spacing: 0.04em;
+		}
+
+		.ptag-pain {
+			background: rgba(195, 88, 36, 0.12);
+			color: #8a3e12;
+		}
+
+		.ptag-need {
+			background: rgba(12, 124, 120, 0.12);
+			color: var(--accent-strong);
+		}
+
+		.ptag-ctx {
+			background: rgba(31, 35, 48, 0.07);
+			color: var(--muted);
+		}
+
+		.persona-quote {
+			font-style: italic;
+			font-size: 0.96rem;
+			color: var(--muted);
+			border-left: 2px solid rgba(31, 35, 48, 0.14);
+			padding-left: 16px;
+			margin-top: 14px;
+		}
+
+		/* ── Stat boxes ── */
+		.stat-row {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 16px;
+			margin: 28px 0;
+		}
+
+		.cs-stat {
+			background: var(--text);
+			color: #f4efe7;
+			padding: 26px 22px;
+			border-radius: 20px;
+		}
+
+		.cs-stat-num {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 2.2rem;
+			font-weight: 700;
+			display: block;
+			margin-bottom: 6px;
+		}
+
+		.cs-stat-label {
+			font-size: 0.88rem;
+			color: rgba(244, 239, 231, 0.65);
+			line-height: 1.4;
+		}
+
+		/* ── Funnel ── */
+		.funnel {
+			margin: 28px 0;
+			border-radius: 20px;
+			overflow: hidden;
+			border: 1px solid rgba(31, 35, 48, 0.08);
+		}
+
+		.funnel-row {
+			display: flex;
+			align-items: center;
+			gap: 18px;
+			padding: 18px 22px;
+			background: var(--panel-strong);
+			border-bottom: 1px solid rgba(31, 35, 48, 0.06);
+		}
+
+		.funnel-row:last-child {
+			border-bottom: none;
+			background: var(--text);
+		}
+
+		.funnel-row:last-child .funnel-label strong { color: #f4efe7; }
+		.funnel-row:last-child .funnel-label span { color: rgba(244, 239, 231, 0.55); }
+		.funnel-row:last-child .funnel-val .big { color: #f4efe7; }
+		.funnel-row:last-child .funnel-val .sub { color: rgba(244, 239, 231, 0.55); }
+
+		.funnel-arrow-row {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 8px 22px;
+			background: rgba(31, 35, 48, 0.03);
+			border-bottom: 1px solid rgba(31, 35, 48, 0.06);
+		}
+
+		.funnel-arrow-row span {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.78rem;
+			color: var(--muted);
+		}
+
+		.funnel-label { flex: 1; }
+
+		.funnel-label strong {
+			display: block;
+			font-size: 0.94rem;
+			font-weight: 600;
+			color: var(--text);
+			margin-bottom: 2px;
+		}
+
+		.funnel-label span {
+			font-size: 0.82rem;
+			color: var(--muted);
+		}
+
+		.funnel-val { text-align: right; flex-shrink: 0; }
+
+		.funnel-val .big {
+			font-size: 1.5rem;
+			font-weight: 700;
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			display: block;
+			color: var(--text);
+		}
+
+		.funnel-val .sub {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.7rem;
+			color: var(--muted);
+			letter-spacing: 0.04em;
+		}
+
+		/* ── Flow steps ── */
+		.flow-steps { margin: 32px 0; }
+
+		.flow-step {
+			display: flex;
+			gap: 22px;
+			position: relative;
+		}
+
+		.flow-step:not(:last-child)::after {
+			content: '';
+			position: absolute;
+			left: 18px;
+			top: 42px;
+			bottom: -14px;
+			width: 2px;
+			background: rgba(31, 35, 48, 0.1);
+		}
+
+		.flow-num {
+			width: 38px;
+			height: 38px;
+			border-radius: 50%;
+			background: var(--text);
+			color: #f4efe7;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.82rem;
+			font-weight: 700;
+			flex-shrink: 0;
+			position: relative;
+			z-index: 1;
+		}
+
+		.flow-num.accent { background: var(--accent); }
+
+		.flow-body {
+			flex: 1;
+			padding-bottom: 28px;
+		}
+
+		.flow-body h4 {
+			font-size: 1.08rem;
+			margin: 8px 0 6px;
+			color: var(--text);
+		}
+
+		.flow-body p {
+			font-size: 0.92rem;
+			color: var(--muted);
+			margin: 0;
+			line-height: 1.6;
+		}
+
+		/* ── Partner table ── */
+		.partner-table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 24px 0;
+			font-size: 0.9rem;
+		}
+
+		.partner-table th {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.68rem;
+			letter-spacing: 0.09em;
+			text-transform: uppercase;
+			color: var(--muted);
+			text-align: left;
+			padding: 10px 14px;
+			border-bottom: 2px solid rgba(31, 35, 48, 0.1);
+		}
+
+		.partner-table td {
+			padding: 14px;
+			border-bottom: 1px solid rgba(31, 35, 48, 0.06);
+			color: var(--muted);
+			vertical-align: top;
+			line-height: 1.5;
+		}
+
+		.partner-table td strong { color: var(--text); }
+
+		.partner-table tr:last-child td { border-bottom: none; }
+
+		.partner-table tr:hover td {
+			background: rgba(255, 251, 245, 0.7);
+		}
+
+		.badge {
+			display: inline-block;
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.68rem;
+			padding: 3px 8px;
+			border-radius: 999px;
+			letter-spacing: 0.04em;
+		}
+
+		.badge-hi { background: rgba(12, 124, 120, 0.14); color: var(--accent-strong); }
+		.badge-md { background: rgba(181, 98, 10, 0.14); color: #7a4006; }
+		.badge-lo { background: rgba(31, 35, 48, 0.08); color: var(--muted); }
+
+		/* ── Revenue cards ── */
+		.rev-card {
+			background: var(--panel-strong);
+			border: 1px solid rgba(31, 35, 48, 0.08);
+			border-radius: 20px;
+			padding: 26px;
+			margin-bottom: 14px;
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: 16px;
+			align-items: start;
+		}
+
+		.rev-card h4 {
+			font-size: 1.12rem;
+			margin: 0 0 6px;
+			color: var(--text);
+		}
+
+		.rev-card p {
+			font-size: 0.88rem;
+			color: var(--muted);
+			margin: 0;
+			line-height: 1.55;
+		}
+
+		.rev-est { text-align: right; }
+
+		.rev-est .amount {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--accent);
+			display: block;
+		}
+
+		.rev-est .freq {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.7rem;
+			color: var(--muted);
+			letter-spacing: 0.04em;
+		}
+
+		/* ── Metrics ── */
+		.metric-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 16px;
+			margin: 28px 0;
+		}
+
+		.metric-item {
+			background: var(--panel-strong);
+			border: 1px solid rgba(31, 35, 48, 0.08);
+			border-radius: 20px;
+			padding: 20px 22px;
+		}
+
+		.metric-item h4 {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			letter-spacing: 0.09em;
+			color: var(--accent-strong);
+			margin: 0 0 12px;
+		}
+
+		.metric-item ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: grid;
+			gap: 8px;
+		}
+
+		.metric-item ul li {
+			font-size: 0.88rem;
+			color: var(--muted);
+			padding-left: 16px;
+			position: relative;
+			line-height: 1.55;
+			margin-bottom: 14px;
+		}
+
+		.metric-item ul li:last-child { margin-bottom: 0; }
+
+		.metric-item ul li::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0.45em;
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: var(--accent);
+		}
+
+		.metric-explain {
+			display: block;
+			font-size: 0.78rem;
+			font-style: italic;
+			color: rgba(91, 92, 111, 0.75);
+			margin-top: 4px;
+			line-height: 1.5;
+		}
+
+		/* ── Risks ── */
+		.risk-item {
+			display: flex;
+			gap: 18px;
+			padding: 18px 0;
+			border-bottom: 1px solid rgba(31, 35, 48, 0.07);
+			align-items: start;
+		}
+
+		.risk-item:last-child { border-bottom: none; }
+
+		.risk-sev {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.7rem;
+			padding: 4px 10px;
+			border-radius: 999px;
+			flex-shrink: 0;
+			margin-top: 3px;
+		}
+
+		.risk-content h4 {
+			font-size: 0.96rem;
+			font-weight: 600;
+			color: var(--text);
+			margin: 0 0 5px;
+		}
+
+		.risk-content p {
+			font-size: 0.88rem;
+			color: var(--muted);
+			margin: 0;
+			line-height: 1.55;
+		}
+
+		/* ── Conclusion band ── */
+		.cs-conclusion {
+			background: var(--text);
+			color: #f4efe7;
+			border-radius: var(--radius-lg);
+			padding: 52px 40px;
+			margin-top: 0;
+		}
+
+		.cs-conclusion .cs-section-num { color: rgba(244, 239, 231, 0.38); }
+
+		.cs-conclusion h2 {
+			font-size: clamp(2rem, 4vw, 3.4rem);
+			line-height: 0.98;
+			letter-spacing: -0.03em;
+			margin: 0 0 24px;
+			color: #f4efe7;
+		}
+
+		.cs-conclusion p {
+			color: rgba(244, 239, 231, 0.6);
+			font-size: 1.02rem;
+			line-height: 1.72;
+			margin: 0 0 18px;
+		}
+
+		.conclusion-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 20px;
+			margin: 36px 0 20px;
+		}
+
+		.conclusion-point {
+			border-top: 1px solid rgba(244, 239, 231, 0.12);
+			padding-top: 18px;
+		}
+
+		.conclusion-point h4 {
+			font-size: 1.05rem;
+			color: #f4efe7;
+			margin: 0 0 8px;
+		}
+
+		.conclusion-point p {
+			font-size: 0.88rem;
+			color: rgba(244, 239, 231, 0.55);
+			margin: 0;
+		}
+
+		.cs-disclaimer {
+			font-size: 0.78rem !important;
+			color: rgba(244, 239, 231, 0.35) !important;
+			border-top: 1px solid rgba(244, 239, 231, 0.1);
+			padding-top: 16px;
+			margin-top: 8px !important;
+		}
+
+		/* ── Footer ── */
+		.cs-footer {
+			padding: 24px 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-top: 1px solid rgba(31, 35, 48, 0.1);
+		}
+
+		.cs-footer span {
+			font-family: 'Trebuchet MS', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+			font-size: 0.8rem;
+			color: var(--muted);
+		}
+
+		/* ── Responsive ── */
+		@media (max-width: 800px) {
+			.cs-section { padding: 36px 24px; }
+			.cs-hero { padding: 36px 24px 32px; }
+			.card-grid-3, .stat-row, .metric-grid, .conclusion-grid { grid-template-columns: 1fr; }
+			.persona { grid-template-columns: 1fr; }
+			.rev-card { grid-template-columns: 1fr; }
+			.cs-conclusion { padding: 36px 24px; }
+		}
+
+		@media (max-width: 640px) {
+			.cs-shell { padding: 16px; }
+			.cs-topbar { position: static; }
+			.cs-nav { display: none; }
+			.card-grid-2 { grid-template-columns: 1fr; }
+		}
+	</style>
+
+	<div class="cs-shell">
+		<div class="ambient ambient-left"></div>
+		<div class="ambient ambient-right"></div>
+
+		<!-- Topbar -->
+		<header class="cs-topbar">
+			<a class="cs-brand" href="/">Vikram Thalithaje</a>
+			<nav class="cs-nav" aria-label="Case study sections">
+				<a href="#problem">Problem</a>
+				<a href="#users">Users</a>
+				<a href="#market">Market</a>
+				<a href="#solution">Solution</a>
+				<a href="#revenue">Revenue</a>
+				<a href="#metrics">Metrics</a>
+			</nav>
+			<a class="cs-back" href="/#case-studies">← Back to portfolio</a>
+		</header>
+
+		<main style="display: grid; gap: 20px;">
+
+			<!-- Hero -->
+			<section class="cs-hero panel">
+				<p class="cs-hero-tag">Product Case Study · Rendin × Moving Services</p>
+				<h1>The gap after<br><em>the signature</em></h1>
+				<p class="cs-hero-sub">
+					A product opportunity analysis on how Rendin — Estonia's rental protection platform — could close
+					the tenant journey at the moment it currently stops: the day the contract is signed.
+				</p>
+				<div class="cs-meta">
+					<div class="cs-meta-item">
+						<span class="cs-meta-label">Company</span>
+						<span class="cs-meta-value">Rendin OÜ, Tallinn</span>
+					</div>
+					<div class="cs-meta-item">
+						<span class="cs-meta-label">Founded</span>
+						<span class="cs-meta-value">2019 · Pre-Series A</span>
+					</div>
+					<div class="cs-meta-item">
+						<span class="cs-meta-label">Markets</span>
+						<span class="cs-meta-value">Estonia, Poland</span>
+					</div>
+					<div class="cs-meta-item">
+						<span class="cs-meta-label">Volume</span>
+						<span class="cs-meta-value">~600 contracts/month</span>
+					</div>
+					<div class="cs-meta-item">
+						<span class="cs-meta-label">Author</span>
+						<span class="cs-meta-value">Vikram · PM Portfolio</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- 01 Problem -->
+			<section class="section cs-section panel" id="problem">
+				<p class="cs-section-num">01 — Problem</p>
+				<h2>A to Z?<br><em>Not quite.</em></h2>
+				<p>
+					Rendin describes its mission as a safe rental experience "from A to Z — from listing to handover protocol." The platform handles almost every step well: discovery, background checks, legal agreements, insurance, damage claims.
+				</p>
+				<p>
+					But there is one moment where it hands the tenant a signed PDF and disappears: the actual move.
+				</p>
+
+				<div class="callout">
+					<p class="callout-label">The core insight</p>
+					<p>
+						Rendin already has the tenant's move-in date, the property address, and verified identity. No moving company in Estonia or Poland holds this data. Rendin is sitting on the single clearest intent signal in the moving market — and not using it.
+					</p>
+				</div>
+
+				<p>
+					This is not a critique. At 20 people across two countries, focus is essential. But it is a clear white space: a high-intent moment in the post-signing journey where a well-designed partnership feature could add value to tenants, bring in revenue with zero capex, and sharpen Rendin's claim to take users from A to Z.
+				</p>
+
+				<div class="card-grid card-grid-3">
+					<div class="cs-card">
+						<div class="cs-card-icon">📋</div>
+						<h4>The handover gap</h4>
+						<p>The handover protocol is a legal moment that happens at move-in. A chaotic, undocumented move raises the chance of damage disputes — which directly increases Rendin's insurance exposure.</p>
+					</div>
+					<div class="cs-card">
+						<div class="cs-card-icon">🌍</div>
+						<h4>Expat friction</h4>
+						<p>A growing portion of Rendin's users are international. Expats in Tallinn have no local network to find trusted movers, and the market has no clear quality signal for newcomers.</p>
+					</div>
+					<div class="cs-card">
+						<div class="cs-card-icon">💸</div>
+						<h4>Post-signing silence</h4>
+						<p>After signing, tenants go quiet on the platform until there's a problem. A moving feature creates a useful re-engagement point at precisely the right moment.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- 02 Users -->
+			<section class="section cs-section panel" id="users">
+				<p class="cs-section-num">02 — User Research & Personas</p>
+				<h2>Who actually<br><em>moves</em> in Estonia?</h2>
+
+				<p>
+					Estonia has significant internal mobility — Tallinn pulls population from smaller cities — alongside a growing expat and digital nomad community drawn by e-Residency and EU digital infrastructure. Moving24.ee, one of Tallinn's larger operators, reports <strong>over 140 residential moves per day in Tallinn alone</strong>. These are Rendin's users.
+				</p>
+
+				<div class="persona">
+					<div class="persona-avatar" style="background: rgba(12, 124, 120, 0.12);">👩‍💻</div>
+					<div class="persona-content">
+						<h4>Alisa, 27</h4>
+						<p class="persona-role">Software Engineer · Moved from Tartu to Tallinn for a new job</p>
+						<div class="persona-tags">
+							<span class="ptag ptag-pain">Time-poor</span>
+							<span class="ptag ptag-pain">No local network</span>
+							<span class="ptag ptag-need">Trusted referral</span>
+							<span class="ptag ptag-need">Fixed price</span>
+							<span class="ptag ptag-ctx">First time renting alone</span>
+						</div>
+						<p>
+							Alisa found her apartment on Rendin and liked the deposit-free process. Two weeks before move-in, she spent three evenings comparing movers on Google, reading Estonian-language reviews she could barely parse, and getting quotes that varied wildly. She picked by gut feel and paid too much.
+						</p>
+						<p class="persona-quote">"I trusted Rendin for the contract — I'd have trusted them if they'd recommended a mover too."</p>
+					</div>
+				</div>
+
+				<div class="persona">
+					<div class="persona-avatar" style="background: rgba(12, 124, 120, 0.1);">👨‍👩‍👧</div>
+					<div class="persona-content">
+						<h4>Mihkel & Kadri, 34 & 32</h4>
+						<p class="persona-role">Family · Upgrading from 2BR to 3BR in Kristiine, Tallinn</p>
+						<div class="persona-tags">
+							<span class="ptag ptag-pain">Moving with kids</span>
+							<span class="ptag ptag-pain">Large volume</span>
+							<span class="ptag ptag-need">Reliability</span>
+							<span class="ptag ptag-need">Furniture assembly</span>
+							<span class="ptag ptag-ctx">Repeat Rendin users</span>
+						</div>
+						<p>
+							Second-time Rendin users who actively trust the brand. Their concern is not finding <em>a</em> mover — it's finding a <em>reliable</em> one. The last time they moved independently, the company showed up two hours late and scratched their dining table. They want certainty and will pay a modest premium for it.
+						</p>
+						<p class="persona-quote">"We'd pay €20–30 more for a mover someone vouches for. We don't need cheap, we need reliable."</p>
+					</div>
+				</div>
+
+				<div class="persona">
+					<div class="persona-avatar" style="background: rgba(181, 98, 10, 0.1);">🌍</div>
+					<div class="persona-content">
+						<h4>Priya, 29</h4>
+						<p class="persona-role">UX Designer · From India, 4 months in Estonia via tech job</p>
+						<div class="persona-tags">
+							<span class="ptag ptag-pain">Language barrier</span>
+							<span class="ptag ptag-pain">No Estonian contacts</span>
+							<span class="ptag ptag-need">English-language support</span>
+							<span class="ptag ptag-need">Transparent pricing</span>
+							<span class="ptag ptag-ctx">First move in a new country</span>
+						</div>
+						<p>
+							Priya used Rendin entirely in English — one of the reasons she chose it over KV.ee. For her, the moving market is opaque. A curated English-first recommendation would have saved her hours. She ended up asking Slack colleagues, got three different opinions, and picked randomly.
+						</p>
+						<p class="persona-quote">"I didn't know if I was being ripped off. There's no Trustpilot for Estonian movers in English."</p>
+					</div>
+				</div>
+
+				<div class="callout">
+					<p class="callout-label">Common thread</p>
+					<p>None of them struggle to find <em>a</em> mover. The problem is finding a <em>trustworthy</em> one at a fair price — and trust is exactly what Rendin has already built. That equity transfers.</p>
+				</div>
+			</section>
+
+			<!-- 03 Market -->
+			<section class="section cs-section panel" id="market">
+				<p class="cs-section-num">03 — Market Sizing</p>
+				<h2>How big is<br><em>the opportunity</em>?</h2>
+
+				<p>
+					This starts from Rendin's own disclosed numbers and builds outward. A bottom-up approach is more credible for an early-stage feature than broad industry estimates.
+				</p>
+
+				<div class="stat-row">
+					<div class="cs-stat">
+						<span class="cs-stat-num">600</span>
+						<span class="cs-stat-label">Rental agreements signed on Rendin per month (2024 figure)</span>
+					</div>
+					<div class="cs-stat">
+						<span class="cs-stat-num">140+</span>
+						<span class="cs-stat-label">Residential moves per day in Tallinn, per Moving24.ee</span>
+					</div>
+					<div class="cs-stat">
+						<span class="cs-stat-num">€150–400</span>
+						<span class="cs-stat-label">Typical local move in Tallinn (van + 1–2 workers, 3–4 hours)</span>
+					</div>
+				</div>
+
+				<h3 style="font-size: 1.2rem; margin: 36px 0 16px; color: var(--text);">Bottom-up funnel: Estonia only</h3>
+
+				<div class="funnel">
+					<div class="funnel-row">
+						<div class="funnel-label">
+							<strong>Total agreements signed (Estonia)</strong>
+							<span>Monthly Rendin contracts, ~70% Estonia-based</span>
+						</div>
+						<div class="funnel-val">
+							<span class="big">~420</span>
+							<span class="sub">agreements / month</span>
+						</div>
+					</div>
+					<div class="funnel-arrow-row">
+						<span>↓ 65% of tenants need moving help — they're relocating, not just renewing</span>
+					</div>
+					<div class="funnel-row">
+						<div class="funnel-label">
+							<strong>Tenants who see the moving prompt</strong>
+							<span>Those who need help and are shown the "Plan your move" card after signing</span>
+						</div>
+						<div class="funnel-val">
+							<span class="big">~273</span>
+							<span class="sub">eligible tenants / month</span>
+						</div>
+					</div>
+					<div class="funnel-arrow-row">
+						<span>↓ 35% opt in and book a mover through Rendin (conservative — high-trust, pre-filled context)</span>
+					</div>
+					<div class="funnel-row">
+						<div class="funnel-label">
+							<strong>Confirmed bookings via Rendin</strong>
+							<span>Tenants who complete a moving booking through the platform. This is the shared engine for all three revenue streams below.</span>
+						</div>
+						<div class="funnel-val">
+							<span class="big">~95</span>
+							<span class="sub">bookings / month</span>
+						</div>
+					</div>
+				</div>
+
+				<p style="margin: 28px 0 16px; font-size: 0.75rem; color: var(--muted); font-family: 'Trebuchet MS', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;">↓ Three revenue streams flow from these 95 bookings</p>
+
+				<div class="card-grid card-grid-3" style="margin-bottom: 16px;">
+					<div class="cs-card" style="border-top: 3px solid var(--accent);">
+						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Option A · Moving Installments</p>
+						<p>Tenant's full moving cost (~€200) split into monthly installments of ~€17 on their Rendin invoice. Rendin pays the mover and recovers the cost over 12 months. Each opted-in cohort keeps compounding as new tenants join each month.</p>
+						<div style="border-top: 1px solid rgba(31,35,48,0.08); padding-top: 12px; margin-top: 14px;">
+							<span style="font-size: 1.5rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">€19,380</span>
+							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">collected on the 12th month · 1,140 tenants paying simultaneously</span>
+						</div>
+						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">1,140 tenants × €17 · Rendin margin ~5–8% net</p>
+					</div>
+					<div class="cs-card" style="border-top: 3px solid rgba(45, 140, 100, 0.8);">
+						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 100, 60, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Option B · Partner Commission</p>
+						<p>Moving company pays Rendin ~12% of the booked move value. Avg move = €250. Tenant pays nothing extra — this comes entirely from the partner.</p>
+						<div style="border-top: 1px solid rgba(31,35,48,0.08); padding-top: 12px; margin-top: 14px;">
+							<span style="font-size: 1.5rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">€2,850</span>
+							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">/ month · €34k / year</span>
+						</div>
+						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">95 × €250 × 12% = €2,850</p>
+					</div>
+					<div class="cs-card" style="border-top: 3px solid rgba(30, 77, 140, 0.7);">
+						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 55, 120, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">Option C · Placement Fee</p>
+						<p>Flat monthly fee paid by 2 vetted moving partners for priority placement in the widget. Not tied to booking volume — predictable regardless of opt-in rate.</p>
+						<div style="border-top: 1px solid rgba(31,35,48,0.08); padding-top: 12px; margin-top: 14px;">
+							<span style="font-size: 1.5rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">€600</span>
+							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted);">/ month · €7.2k / year</span>
+						</div>
+						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">2 partners × €300/month flat</p>
+					</div>
+				</div>
+
+				<div class="cs-card" style="margin-bottom: 0;">
+					<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 16px;">Why these can stack — they come from different pockets</p>
+					<div class="card-grid card-grid-3">
+						<div>
+							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Option A</p>
+							<p style="font-size: 0.88rem;"><strong style="color: var(--text);">Tenant pays</strong> the mover's full cost in monthly installments of ~€16–17, added to their Rendin invoice. Rendin pays the mover upfront and recovers the cost gradually. The moving company receives a lump sum from Rendin.</p>
+						</div>
+						<div>
+							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 100, 60, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Option B</p>
+							<p style="font-size: 0.88rem;"><strong style="color: var(--text);">Moving company pays</strong> ~€30 referral commission to Rendin after the job is completed. The tenant never sees this. It comes out of the mover's margin, not the tenant's invoice.</p>
+						</div>
+						<div>
+							<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20, 55, 120, 0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">Option C</p>
+							<p style="font-size: 0.88rem;"><strong style="color: var(--text);">Moving company pays</strong> a flat €300/month for priority placement — regardless of how many bookings happen that month. Completely independent of booking volume.</p>
+						</div>
+					</div>
+					<div style="border-top: 1px solid rgba(31,35,48,0.08); margin-top: 20px; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+						<p style="font-size: 0.88rem; color: var(--muted); margin: 0; max-width: 560px;">A and B both flow from the same 95 bookings but are charged to different parties — no double-charging. Option A is a pass-through with a 10% margin; the €125,970 collected across year 1 is not profit — ~€12,600 is. C is independent of bookings entirely.</p>
+						<div style="text-align: right; flex-shrink: 0;">
+							<span style="font-size: 1.8rem; font-family: 'Trebuchet MS', sans-serif; font-weight: 700; color: var(--text); display: block;">~€51k</span>
+							<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.04em;">Rendin net · year 1 · Estonia · A + B + C</span>
+						</div>
+					</div>
+				</div>
+
+				<p style="margin-top: 24px;">
+					Option C is worth noting as a floor: even if tenant opt-in rates disappoint in month one, Rendin still earns €600/month from partners paying for visibility. A and B scale with bookings; C does not — so the revenue model has a predictable base regardless of early conversion performance.
+				</p>
+
+				<div class="callout">
+					<p class="callout-label">The Poland multiplier</p>
+					<p>Poland's rental market is roughly 10x Estonia's by population, and Rendin has stated it as an expansion priority. The same three-stream model applied to 2,000 contracts/month in Poland projects to <strong>~€180–220k/year</strong> — with near-zero additional build cost, since the feature and partner framework are already in place.</p>
+				</div>
+			</section>
+
+			<!-- 04 Solution -->
+			<section class="section cs-section panel" id="solution">
+				<p class="cs-section-num">04 — Solution & UX Flow</p>
+				<h2>What the<br><em>feature looks like</em></h2>
+
+				<p>
+					The design principle: <strong>zero extra friction for users who don't want it, high value for those who do.</strong> The feature slots into the existing post-signing experience as a contextual prompt — additive, not disruptive.
+				</p>
+
+				<p>
+					Rendin should <strong>not</strong> build a moving service. It should build a <strong>curated partner widget</strong> — 2–3 vetted movers, surfaced at the right moment with move-in date and address already filled in from the contract.
+				</p>
+
+				<div class="flow-steps" style="margin-top: 36px;">
+					<div class="flow-step">
+						<div class="flow-num">1</div>
+						<div class="flow-body">
+							<h4>Agreement signed — the trigger</h4>
+							<p>When a tenant signs, Rendin already sends a confirmation email and in-app notification. This is the insertion point. A secondary card: <em>"Your move-in is [date]. Need help moving?"</em> — pulling data Rendin already holds.</p>
+						</div>
+					</div>
+					<div class="flow-step">
+						<div class="flow-num">2</div>
+						<div class="flow-body">
+							<h4>Mover selection — curated, not open</h4>
+							<p>Tenants see 2–3 vetted partners, not a full marketplace. Each shows a rating, price range, and availability for the move-in date. Fewer choices drive higher conversion and create a cleaner incentive for partners to maintain quality.</p>
+						</div>
+					</div>
+					<div class="flow-step">
+						<div class="flow-num accent">3</div>
+						<div class="flow-body">
+							<h4>Quote request — pre-filled from contract</h4>
+							<p>The form is pre-populated with destination address (from contract), move-in date, and apartment size (from listing). The tenant only adds number of boxes and items. This is measurably lower friction than any standalone moving site.</p>
+						</div>
+					</div>
+					<div class="flow-step">
+						<div class="flow-num">4</div>
+						<div class="flow-body">
+							<h4>Booking — off-platform, tracked</h4>
+							<p>Booking happens on the partner's site or via API if supported. Rendin gets a webhook confirmation and logs the referral for commission tracking. No payment infrastructure needed — the referral model keeps this lean.</p>
+						</div>
+					</div>
+					<div class="flow-step">
+						<div class="flow-num">5</div>
+						<div class="flow-body">
+							<h4>Post-move — handover protocol prompt</h4>
+							<p>After the scheduled move-in date, Rendin prompts both parties to complete the digital handover protocol. This closes the loop — the moving feature feeds directly into Rendin's core product and raises protocol completion rates.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="callout" style="margin-top: 0;">
+					<p class="callout-label">Brand protection</p>
+					<p>Rendin's real risk: if a referred mover damages belongings, trust in Rendin takes the hit. Mitigation: vetting requires insurance, minimum 4.3★ Google rating, and background-checked staff. Rendin's communication is "Rendin Recommended" — not "Rendin Guaranteed." Fast-offboarding clause for any partner with two or more tenant complaints.</p>
+				</div>
+			</section>
+
+			<!-- 05 Revenue -->
+			<section class="section cs-section panel" id="revenue">
+				<p class="cs-section-num">05 — Partnership Model & Revenue</p>
+				<h2>Who are the<br><em>right partners</em>?</h2>
+
+				<p>
+					The partnership structure should be <strong>exclusive per city, non-exclusive nationally.</strong> Each city gets 1–2 preferred partners, creating a competitive incentive to keep quality high. Rendin never owns trucks.
+				</p>
+
+				<table class="partner-table">
+					<thead>
+						<tr>
+							<th>Company</th>
+							<th>Base</th>
+							<th>Strength</th>
+							<th>Fit</th>
+							<th>Priority</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Moving24.ee</strong></td>
+							<td>Tallinn</td>
+							<td>5,000+ moves, high-volume ops, English-capable</td>
+							<td>Large enough to absorb Rendin referral volume without strain</td>
+							<td><span class="badge badge-hi">High</span></td>
+						</tr>
+						<tr>
+							<td><strong>Uksest Ukseni</strong></td>
+							<td>Tallinn / Harju</td>
+							<td>Published rate card, transparent pricing, furniture assembly</td>
+							<td>Pricing clarity maps well to Rendin's brand values</td>
+							<td><span class="badge badge-hi">High</span></td>
+						</tr>
+						<tr>
+							<td><strong>Sealt Siia OÜ</strong></td>
+							<td>Tallinn</td>
+							<td>International moves, strong Google reviews, fast turnaround</td>
+							<td>Strong fit for Rendin's expat tenant segment specifically</td>
+							<td><span class="badge badge-md">Medium</span></td>
+						</tr>
+						<tr>
+							<td><strong>Adduco / MoveMaster</strong></td>
+							<td>Tallinn + Tartu</td>
+							<td>FIDI/IAM accredited, international network, 30+ year track record</td>
+							<td>Good for a premium tier — justifies a higher referral rate</td>
+							<td><span class="badge badge-md">Medium</span></td>
+						</tr>
+						<tr>
+							<td><strong>FidsTrans</strong></td>
+							<td>Tallinn / Harju</td>
+							<td>Budget-friendly, competitive pricing, local reach</td>
+							<td>Broadens addressable audience for price-sensitive tenants</td>
+							<td><span class="badge badge-lo">Secondary</span></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3 style="font-size: 1.2rem; margin: 36px 0 8px; color: var(--text);">Revenue model options</h3>
+				<p style="margin-bottom: 24px;">Three complementary levers — each independent, all stackable. Option A is the most structurally interesting: it mirrors Rendin's own founding idea of replacing a large upfront cost with a small monthly payment — applied now to the cost of moving itself.</p>
+
+				<div class="rev-card" style="display: block; border-left: 3px solid var(--accent);">
+					<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px;">
+						<h4 style="margin: 0;">Option A — Moving Cost Paid in Installments</h4>
+						<span style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--accent-strong); letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; padding-top: 3px;">RECOMMENDED</span>
+					</div>
+					<p>When a tenant opts in, they don't pay the mover upfront. Instead, the full moving cost — say <strong>€200 for a standard local move</strong> — is spread into monthly installments of <strong>€17/month for 12 months</strong>, added to their existing Rendin invoice. Rendin pays the moving company directly, then recovers the cost gradually from the tenant over the tenancy.</p>
+					<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">This mirrors Rendin's own founding logic: replace a large upfront cost with a small monthly line. No lump-sum moving bill. No deposit. The tenant starts their tenancy with zero financial shock. Rendin charges a 10% coordination spread — it collects €220 total (€18.33/month) and pays the mover €200 — earning €20 net per tenant over the tenancy.</p>
+
+					<div style="margin-top: 24px;">
+						<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;">How the cash flow builds month by month — Estonia only</p>
+						<table class="partner-table" style="margin: 0;">
+							<thead>
+								<tr>
+									<th>Month</th>
+									<th>New opt-ins</th>
+									<th>Total active tenants paying</th>
+									<th style="text-align: right;">Monthly collection</th>
+									<th style="text-align: right;">Rendin net margin (10%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Month 1</strong></td>
+									<td>95</td>
+									<td>95</td>
+									<td style="text-align: right;">€1,615</td>
+									<td style="text-align: right; color: rgba(20,100,60,0.85);">€162</td>
+								</tr>
+								<tr>
+									<td><strong>Month 2</strong></td>
+									<td>95 more</td>
+									<td>190</td>
+									<td style="text-align: right;">€3,230</td>
+									<td style="text-align: right; color: rgba(20,100,60,0.85);">€323</td>
+								</tr>
+								<tr>
+									<td><strong>Month 3</strong></td>
+									<td>95 more</td>
+									<td>285</td>
+									<td style="text-align: right;">€4,845</td>
+									<td style="text-align: right; color: rgba(20,100,60,0.85);">€485</td>
+								</tr>
+								<tr>
+									<td style="color: var(--muted);" colspan="2">Month 4–11</td>
+									<td style="color: var(--muted);">380 → 1,045</td>
+									<td style="text-align: right; color: var(--muted);">€6,460 → €17,765</td>
+									<td style="text-align: right; color: var(--muted);">€646 → €1,777</td>
+								</tr>
+								<tr style="background: var(--text);">
+									<td style="color: #f4efe7;"><strong>Month 12</strong></td>
+									<td style="color: rgba(244,239,231,0.55);">95 more</td>
+									<td style="color: rgba(244,239,231,0.55);">1,140 tenants</td>
+									<td style="text-align: right; color: #f4efe7;">€19,380</td>
+									<td style="text-align: right; color: #6fcf97;">€1,938</td>
+								</tr>
+								<tr style="background: var(--panel-strong);">
+									<td colspan="3"><strong>Year 1 total collected</strong></td>
+									<td style="text-align: right;"><strong>€125,970</strong></td>
+									<td style="text-align: right; color: rgba(20,100,60,0.85);"><strong>~€12,600</strong></td>
+								</tr>
+							</tbody>
+						</table>
+						<p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">The €125,970 collected is mostly pass-through — Rendin is disbursing it to movers. The €12,600 is Rendin's actual net margin after paying movers, based on a 10% spread. Month 1 feels small — €162 — but the model requires no additional effort to grow. Every new cohort adds to the base automatically.</p>
+					</div>
+				</div>
+
+				<div class="rev-card">
+					<div>
+						<h4>Option B — Referral Commission from Moving Partner</h4>
+						<p>In parallel, Rendin earns 10–12% of the booked move value from the moving company — paid by the partner, not the tenant. The tenant pays nothing extra. The moving company benefits from a warm, high-intent lead with move-in date and address already known, making the commission straightforward to justify to partners.</p>
+						<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">On an average €250 move, this is ~€25–30 per booking. At 95 bookings/month (Estonia), that's roughly €2,600/month. Unlike Option A this does not compound — it resets each month based on new bookings only.</p>
+					</div>
+					<div class="rev-est">
+						<span class="amount">~€31k</span>
+						<span class="freq">year 1 · Estonia</span>
+					</div>
+				</div>
+
+				<div class="rev-card">
+					<div>
+						<h4>Option C — Partner Placement Fee (Phase 2)</h4>
+						<p>Once the feature has 3–6 months of conversion data, Rendin can offer moving companies a paid "priority slot" — appearing first in the recommendation widget for a flat monthly fee of €200–400. This is a separate, additive stream that doesn't affect the installment or commission models. Introduced only after proving value to partners.</p>
+						<p style="margin-top: 10px; font-size: 0.88rem; color: var(--muted);">Organic ranking still exists — a paying partner still has to meet the vetting criteria. The placement fee buys visibility, not a pass on quality.</p>
+					</div>
+					<div class="rev-est">
+						<span class="amount">~€8k</span>
+						<span class="freq">year 1 · 2 partners</span>
+					</div>
+				</div>
+
+				<div class="callout" style="background: var(--text); border-left: 3px solid var(--accent);">
+					<p class="callout-label" style="color: var(--accent);">Combined revenue picture — Estonia, year 1</p>
+					<p style="color: rgba(244,239,231,0.65);">Option A generates <strong style="color: #f4efe7;">~€12,600 net margin</strong> over year 1 from the 10% coordination spread — small in month 1 (€162), growing to €1,938/month by month 12 as cohorts accumulate. Option B adds ~€31k from partner commissions. Option C adds ~€7.2k from placement fees. <strong style="color: #f4efe7;">Combined net to Rendin: ~€51k in year 1</strong> — from a feature with no trucks, no staff, and no new insurance exposure. At Poland scale (year 2, ~2,000 contracts/month), the same model projects to <strong style="color: #f4efe7;">€200k+/year</strong>.</p>
+				</div>
+			</section>
+
+			<!-- 06 Metrics & Risks -->
+			<section class="section cs-section panel" id="metrics">
+				<p class="cs-section-num">06 — Metrics & Risks</p>
+				<h2>How to know<br><em>if it's working</em></h2>
+
+				<div class="metric-grid">
+					<div class="metric-item">
+						<h4>North Star</h4>
+						<ul>
+							<li>
+								Moving feature conversion rate — target ≥30%
+								<span class="metric-explain">Of every 100 tenants who see the "Plan your move" prompt, at least 30 should go on to book a mover through it. This is the headline number that proves the feature is worth keeping.</span>
+							</li>
+							<li>
+								Post-move satisfaction vs. tenants who didn't use the feature
+								<span class="metric-explain">Both groups are asked "would you recommend Rendin?" after move-in. If tenants who used the moving feature score higher, it means it genuinely improved how they feel about Rendin — not just the move itself.</span>
+							</li>
+							<li>
+								Monthly referral income vs. goal
+								<span class="metric-explain">Is the commission earned from moving bookings hitting the monthly target? If not, something in the funnel needs fixing.</span>
+							</li>
+						</ul>
+					</div>
+					<div class="metric-item">
+						<h4>Product Health</h4>
+						<ul>
+							<li>
+								How many tenants click the moving prompt
+								<span class="metric-explain">After signing, a card appears saying "Need help moving?" — what share of tenants actually tap it? A very low rate means the message or placement is wrong, before anything else is evaluated.</span>
+							</li>
+							<li>
+								How many complete the quote request form
+								<span class="metric-explain">Of the people who clicked, how many filled in the form and hit submit? A big drop here usually means the form asks for too much, or information people don't have to hand.</span>
+							</li>
+							<li>
+								Where in the booking process people abandon
+								<span class="metric-explain">There are several steps: click → fill form → pick a mover → confirm. Knowing the exact step where most people leave tells you what to fix — rather than guessing.</span>
+							</li>
+							<li>
+								Whether the moving feature leads to faster, cleaner move-ins
+								<span class="metric-explain">Rendin has a digital move-in checklist both parties complete together. Do tenants who used a vetted mover complete it more often? If yes, a smoother move correlates with better documentation — which protects both sides if there's a later dispute.</span>
+							</li>
+						</ul>
+					</div>
+					<div class="metric-item">
+						<h4>Business Health</h4>
+						<ul>
+							<li>
+								Partner quality over time
+								<span class="metric-explain">Each year, Rendin re-checks its moving partners — do they still meet the required rating, insurance, and service standards? A declining pass rate is an early warning that quality is slipping before tenants start complaining.</span>
+							</li>
+							<li>
+								Whether partners pay their referral fees reliably
+								<span class="metric-explain">If a moving company consistently pays late or not at all, it signals either cash flow problems or that the partner doesn't value the arrangement. A canary metric before bigger issues surface.</span>
+							</li>
+							<li>
+								Tenant complaints about referred movers
+								<span class="metric-explain">How many tenants come back to Rendin saying "the mover you recommended was terrible"? Even one or two unresolved complaints can damage trust disproportionately — so this has a hard cap, not just a percentage threshold.</span>
+							</li>
+						</ul>
+					</div>
+					<div class="metric-item">
+						<h4>Insurance Impact</h4>
+						<ul>
+							<li>
+								Do vetted-mover tenants file fewer damage claims?
+								<span class="metric-explain">Rendin's core business is covering tenant-caused damage. If tenants who used a Rendin-referred mover cause less damage during move-in, that's a direct financial argument for the feature — it reduces Rendin's own payout exposure.</span>
+							</li>
+							<li>
+								How often move-in inspections lead to disagreements
+								<span class="metric-explain">When both parties walk through the apartment at move-in and sign off on its condition, "who caused that scratch" disputes become much easier to resolve. A lower dispute rate after launch suggests smoother handovers.</span>
+							</li>
+							<li>
+								How quickly both parties sign off on move-in condition
+								<span class="metric-explain">The faster landlord and tenant complete the digital inspection checklist after moving day, the less ambiguity there is about the apartment's state. Delays often mean one party is already uncomfortable — which tends to predict a claim later.</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<h3 style="font-size: 1.2rem; margin: 36px 0 16px; color: var(--text);">Risks</h3>
+
+				<div>
+					<div class="risk-item" style="flex-direction: column; align-items: stretch; gap: 14px;">
+						<div style="display: flex; gap: 18px; align-items: flex-start;">
+							<span class="risk-sev ptag ptag-pain" style="flex-shrink: 0; margin-top: 3px;">High</span>
+							<div class="risk-content">
+								<h4>Tenant cancels the tenancy before the moving cost is fully repaid</h4>
+								<p>This is the central credit risk of the installment model. If a tenant opts in, Rendin pays the mover €200 upfront, but the tenant leaves at month 5 — Rendin has collected ~€85 and is owed €115 it may not recover easily. At 95 opt-ins/month, even a 10% early exit rate creates a meaningful exposure. Four mitigations work in combination:</p>
+							</div>
+						</div>
+						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+							<div class="cs-card" style="padding: 16px 18px;">
+								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: var(--accent-strong); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 1 · Delayed payout</p>
+								<p style="font-size: 0.88rem;">Rendin does not pay the mover on day 1. Instead it pays after month 3 or 4, once enough installments have been collected to cover the full cost. The tenant still gets the service immediately — the mover agrees to a 90-day payment term in exchange for guaranteed referral volume.</p>
+							</div>
+							<div class="cs-card" style="padding: 16px 18px;">
+								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20,100,60,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 2 · Tenancy obligation</p>
+								<p style="font-size: 0.88rem;">The outstanding moving balance is written into the Rendin agreement as a financial obligation — treated the same as unpaid rent if the tenant exits early. Rendin already has a recovery mechanism for rent arrears and can apply the same process without building anything new.</p>
+							</div>
+							<div class="cs-card" style="padding: 16px 18px;">
+								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(20,55,120,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 3 · Partial upfront payment</p>
+								<p style="font-size: 0.88rem;">Rendin only finances 70% of the move via installments. The tenant pays 30% — roughly €60 on move day — reducing Rendin's exposure from €200 to €140 per tenant. The move-in is still far cheaper than paying the full amount upfront, so the proposition remains compelling.</p>
+							</div>
+							<div class="cs-card" style="padding: 16px 18px;">
+								<p style="font-family: 'Trebuchet MS', sans-serif; font-size: 0.68rem; color: rgba(181,98,10,0.85); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Mitigation 4 · Insurance backstop</p>
+								<p style="font-size: 0.88rem;">Rendin already underwrites rental income risk with ERGO Insurance. The moving installment default risk is structurally similar — a tenant financial obligation that may not be honoured. This could fold into the existing insurance framework, pricing in the default rate at the portfolio level rather than per tenant.</p>
+							</div>
+						</div>
+						<p style="font-size: 0.88rem; color: var(--muted);">In practice, Mitigations 1 and 2 together are sufficient for a first version — delayed payout removes the immediate cash risk, and the tenancy obligation gives a legal recovery path. Mitigations 3 and 4 are phase 2 refinements as volume grows.</p>
+					</div>
+					<div class="risk-item">
+						<span class="risk-sev ptag ptag-need">Medium</span>
+						<div class="risk-content">
+							<h4>Low conversion makes the feature not worth maintaining</h4>
+							<p>If fewer than 15% of eligible tenants engage, the economics don't justify the partner management overhead. Set a 3-month pilot with a clear kill threshold. If conversion is below 15% at month 3, run one round of UX testing before deciding to kill or pivot to landlord-side (e.g. "find move-out services").</p>
+						</div>
+					</div>
+					<div class="risk-item">
+						<span class="risk-sev ptag ptag-need">Medium</span>
+						<div class="risk-content">
+							<h4>Regulatory complexity in Poland</h4>
+							<p>Referral arrangements with Polish moving companies may have different tax and commercial law implications. Replicate the Estonia model only after a local legal review. Phase the Poland launch 6 months after Estonia proves conversion.</p>
+						</div>
+					</div>
+					<div class="risk-item">
+						<span class="risk-sev ptag ptag-ctx">Low</span>
+						<div class="risk-content">
+							<h4>Rendin may already have looked at this</h4>
+							<p>There is a real chance Rendin has evaluated and deprioritised this, or has it on a near-term roadmap. This case study is a structured product exercise, not a claim to have found a blind spot. The analysis stands regardless — the gap exists, the model is viable, and the fit is clear.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 07 Conclusion -->
+			<section class="cs-conclusion">
+				<p class="cs-section-num">07 — Conclusion</p>
+				<h2>The opportunity<br>in a sentence</h2>
+				<p>
+					Rendin has a precise intent signal — move-in date, address, verified tenant identity — that no moving company in Estonia or Poland possesses. A lightweight referral feature turns this into a zero-capex revenue stream, a brand-consistent user experience, and a plausible reduction in insurance claims through better-documented, less chaotic move-ins.
+				</p>
+
+				<div class="conclusion-grid">
+					<div class="conclusion-point">
+						<h4>For founders</h4>
+						<p>This is an embedded services play. Rendin already owns the trust layer. The moving referral is a wedge into a broader move-in bundle — storage, internet setup, furniture — that could become a real revenue line at scale.</p>
+					</div>
+					<div class="conclusion-point">
+						<h4>For investors</h4>
+						<p>The referral model is asset-light with no additional burn. Adding a €40–200k adjacent revenue stream from the same customer base is accretive — and replicates to each new market automatically.</p>
+					</div>
+					<div class="conclusion-point">
+						<h4>For Rendin</h4>
+						<p>Whether or not this specific feature ships, the post-signing journey is an underused canvas. A tenant who has a smooth, Rendin-helped move-in is the most likely to leave a five-star review — and eventually become a landlord on the platform.</p>
+					</div>
+				</div>
+
+				<p class="cs-disclaimer">
+					Independent product case study prepared for portfolio purposes. All figures are estimated from publicly available data. Rendin's actual roadmap or internal evaluation of this opportunity is not known to the author.
+				</p>
+			</section>
+
+			<!-- Footer -->
+			<footer class="cs-footer">
+				<span>Product Case Study · Rendin × Moving · 2025</span>
+				<span>
+					<a href="/" style="color: var(--muted); text-decoration: none;">← Back to portfolio</a>
+				</span>
+			</footer>
+
+		</main>
+	</div>
+</Layout>

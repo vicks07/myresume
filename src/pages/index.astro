@@ -7,6 +7,7 @@ import {
 	experience,
 	featuredStats,
 	hero,
+	productPortfolio,
 	profile,
 	sideProjects,
 	skillCategories,
@@ -217,6 +218,24 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 						))
 					}
 				</div>
+
+				{
+					productPortfolio.map((item) => (
+						<a
+							class="portfolio-case panel"
+							href={item.url}
+							data-track={item.track}
+						>
+							<div class="portfolio-case-left">
+								<span class="case-tag">{item.tag}</span>
+								<p class="portfolio-case-title">{item.title}</p>
+								<p class="portfolio-case-sub">{item.subtitle}</p>
+								<p class="portfolio-case-summary">{item.summary}</p>
+							</div>
+							<span class="portfolio-case-cta">Read case study →</span>
+						</a>
+					))
+				}
 			</section>
 
 			<section class="section">
