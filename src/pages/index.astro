@@ -221,19 +221,20 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 
 				{
 					productPortfolio.map((item) => (
-						<a
-							class="portfolio-case panel"
-							href={item.url}
-							data-track={item.track}
-						>
+						<article class="portfolio-case panel" data-track={item.track}>
 							<div class="portfolio-case-left">
 								<span class="case-tag">{item.tag}</span>
-								<p class="portfolio-case-title">{item.title}</p>
+								<p class="portfolio-case-title"><a href={item.url}>{item.title}</a></p>
 								<p class="portfolio-case-sub">{item.subtitle}</p>
 								<p class="portfolio-case-summary">{item.summary}</p>
 							</div>
-							<span class="portfolio-case-cta">Read case study →</span>
-						</a>
+							<div class="portfolio-case-ctas">
+								<a class="portfolio-case-cta" href={item.url}>Read case study →</a>
+								{item.prototypeUrl && (
+									<a class="portfolio-case-cta" href={item.prototypeUrl} target="_blank" rel="noopener">Open prototype →</a>
+								)}
+							</div>
+						</article>
 					))
 				}
 			</section>

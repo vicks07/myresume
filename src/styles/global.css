@@ -773,3 +773,42 @@ main {
 		padding: 24px;
 	}
 }
+
+/* ── Portfolio card: two actions ─────────────────── */
+
+.portfolio-case-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.portfolio-case-title a:hover {
+	color: var(--accent-vivid);
+}
+
+.portfolio-case-ctas {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 10px;
+	flex-shrink: 0;
+}
+
+.portfolio-case-cta {
+	text-decoration: none;
+}
+
+.portfolio-case-cta:hover {
+	color: var(--accent-vivid);
+}
+
+@media (max-width: 640px) {
+	.portfolio-case {
+		flex-direction: column;
+	}
+
+	.portfolio-case-ctas {
+		flex-direction: row;
+		align-items: center;
+		gap: 18px;
+	}
+}
