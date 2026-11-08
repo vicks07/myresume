@@ -265,6 +265,7 @@ export const productPortfolio = [
 		summary:
 			'Rendin knows every tenant\'s move-in date and address. No moving company in Estonia has this data. This case study analyses what a lightweight referral feature would look like — the UX, the partner model, and the revenue math — and includes a clickable prototype of the tenant flow.',
 		url: '/portfolio/rendin-moving',
+		prototypeUrl: '/prototypes/moving-help/',
 	},
 ];
 
