@@ -271,6 +271,30 @@ export const productPortfolio = [
 
 export const sideProjects = [
 	{
+		name: 'Sidecar: a subagent panel for Claude Code',
+		track: 'forge',
+		url: 'https://github.com/vicks07/sidecar',
+		cta: 'View on GitHub',
+		summary:
+			'A Claude Code mod that adds a side pane listing the subagents of the current session: what each one was asked to do, its status, how long it has run and its latest action. From the pane you can read an agent\'s transcript, send it your next message, or stop it.',
+		highlights: [
+			'Agents waiting on a permission are flagged "needs you" and sorted to the top, so nothing stalls unnoticed.',
+			'Routes one typed message to a chosen agent, with a "sending to" line above the prompt, then hands input back to main Claude.',
+			'Installs as a Claude Code plugin marketplace, with tests that run the pane on terminal, desktop, VS Code and mobile surfaces.',
+			'TypeScript and React on the early-access mods API. Open source, MIT licensed.',
+		],
+		image: {
+			src: '/sidecar/working.png',
+			alt: 'The Sidecar pane: two agents working, one listed under its parent, five finished, and the details of the selected agent below.',
+			width: 484,
+			height: 982,
+		},
+		gallery: [
+			{ src: '/sidecar/stop.png', alt: 'The pane asking "Stop this agent?" with keys for yes and cancel.', width: 484, height: 902 },
+			{ src: '/sidecar/message.png', alt: 'The pane after choosing Message: the row is marked and the details say the next message goes to this agent.', width: 347, height: 682 },
+		],
+	},
+	{
 		name: 'NoFluff AI',
 		track: 'signal',
 		url: 'https://www.nofluff.space',

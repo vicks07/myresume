@@ -241,8 +241,8 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 
 			<section class="section">
 				<div class="section-heading">
-					<p class="eyebrow">Side Project</p>
-					<h2>One product outside work that shows taste, humor, and iteration.</h2>
+					<p class="eyebrow">Side Projects</p>
+					<h2>Products outside work that show taste, humor, and iteration.</h2>
 				</div>
 
 				{
@@ -257,10 +257,24 @@ const resumePath = `${assetBase}${profile.resumeFile}`;
 								</ul>
 							</div>
 							<div class="side-project-actions">
-								<a class="button button-primary" href={project.url}>Visit Site</a>
-								<a class="button button-secondary" href={project.url}>
+								{project.image && (
+									<a class="side-project-shot" href={project.image.src} target="_blank" rel="noopener">
+										<img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} loading="lazy" />
+									</a>
+								)}
+								<a class="button button-primary" href={project.url} target="_blank" rel="noopener">{project.cta ?? 'Visit Site'}</a>
+								<a class="button button-secondary" href={project.url} target="_blank" rel="noopener">
 									{project.url.replace('https://', '')}
 								</a>
+								{project.gallery && (
+									<div class="side-project-gallery">
+										{project.gallery.map((shot) => (
+											<a href={shot.src} target="_blank" rel="noopener">
+												<img src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" />
+											</a>
+										))}
+									</div>
+								)}
 							</div>
 						</article>
 					))
