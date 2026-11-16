@@ -812,3 +812,50 @@ main {
 		gap: 18px;
 	}
 }
+
+/* ── Side project screenshots ────────────────────── */
+
+.side-project-shot {
+	display: block;
+	height: 340px;
+	overflow: hidden;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	background: var(--bg-panel);
+}
+
+.side-project-shot img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+}
+
+.side-project-gallery {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+.side-project-gallery a {
+	display: block;
+	height: 120px;
+	overflow: hidden;
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-md);
+	background: var(--bg-panel);
+}
+
+.side-project-gallery img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+}
+
+.side-project-shot:hover,
+.side-project-gallery a:hover {
+	border-color: var(--accent);
+}
