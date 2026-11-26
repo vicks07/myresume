@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Kodu Moving Help</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: this IS the product. An app bar, one content column, and the screens as pages inside the app.
+   A thin bar at the very top is the only thing that says "prototype". */
+:root {
+  --bg: #f3f4f6; --surface: #ffffff; --ink: #171d26; --muted: #6b7280; --line: #e5e7eb; --field: #f9fafb;
+  --brand: #17766a; --brand-ink: #ffffff; --brand-soft: #e3f2ee; --brand-deep: #0f5a50;
+  --good: #1f8a4c; --good-soft: #e4f4ea; --partner: #3b3a8f; --partner-soft: #ecebfa;
+  --proto: #1c2230; --proto-ink: #c8d0dc;
+  --jaga: #c2410c; --jaga-soft: #fdeee4; --bad: #b42318; --bad-soft: #fdecea;
+  --f: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12161c; --surface: #1b2129; --ink: #e8e9ec; --muted: #9aa3ae; --line: #2a323d; --field: #212831;
+  --brand: #3fb3a3; --brand-ink: #06201c; --brand-soft: #173733; --brand-deep: #5fcbbc;
+  --good: #4fc08a; --good-soft: #15302a; --partner: #a6a3ef; --partner-soft: #262545;
+  --proto: #0b0e13; --proto-ink: #8e97a5;
+  --jaga: #fb923c; --jaga-soft: #3b2416; --bad: #f97066; --bad-soft: #3a1d1c; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #12161c; --surface: #1b2129; --ink: #e8e9ec; --muted: #9aa3ae; --line: #2a323d; --field: #212831;
+  --brand: #3fb3a3; --brand-ink: #06201c; --brand-soft: #173733; --brand-deep: #5fcbbc;
+  --good: #4fc08a; --good-soft: #15302a; --partner: #a6a3ef; --partner-soft: #262545;
+  --proto: #0b0e13; --proto-ink: #8e97a5;
+  --jaga: #fb923c; --jaga-soft: #3b2416; --bad: #f97066; --bad-soft: #3a1d1c; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f); font-size: 15px; line-height: 1.5; min-height: 100vh; }
+h1, h2, h3 { margin: 0; letter-spacing: -0.012em; }
+p { margin: 0; }
+button { font: inherit; cursor: pointer; color: inherit; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+/* prototype bar */
+.proto { background: var(--proto); color: var(--proto-ink); font-size: 12.5px; }
+.proto .in { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; gap: 12px; padding-block: 7px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.proto button { background: none; border: 0; padding: 0; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+/* app bar */
+.appbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 3; }
+.appbar .in { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 24px; height: 60px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+.logo i { width: 26px; height: 26px; border-radius: 8px; background: var(--brand); display: inline-grid; place-items: center; color: var(--brand-ink); font-style: normal; font-size: 14px; }
+.nav { display: flex; gap: 4px; flex: 1; }
+.nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 12px; border-radius: 10px; }
+.nav a.on { color: var(--ink); background: var(--bg); }
+.avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; font-weight: 700; font-size: 14px; margin-left: auto; }
+@media (max-width: 640px) { .nav { display: none; } }
+
+/* content */
+.content { max-width: 600px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.view { display: grid; gap: 14px; }
+.back { display: inline-flex; align-items: center; gap: 4px; border: 0; background: none; color: var(--brand-deep); font-weight: 600; padding: 0; font-size: 14px; justify-self: start; }
+.vt { font-size: 26px; font-weight: 700; line-height: 1.2; }
+.vs { color: var(--muted); font-size: 15px; }
+.prog { list-style: none; margin: 0 0 4px; padding: 0; display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.prog li { display: flex; align-items: center; gap: 8px; }
+.prog li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.prog li.on { color: var(--ink); font-weight: 600; }
+.prog li.on::before { background: var(--brand); }
+.prog li.done::before { background: var(--good); }
+.prog li + li { padding-left: 16px; position: relative; }
+.prog li + li::after { content: ""; position: absolute; left: 0; width: 8px; height: 1px; background: var(--line); }
+
+.hero { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px 22px 18px; display: grid; gap: 6px; }
+.hero.ok { background: var(--good-soft); border-color: transparent; }
+.okmark { width: 40px; height: 40px; border-radius: 50%; background: var(--good); color: #fff; display: grid; place-items: center; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.hero h2 { font-size: 22px; font-weight: 700; }
+.hero p { color: var(--muted); font-size: 15px; }
+.hero p b { color: var(--ink); font-weight: 600; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+.card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.card-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+.card-h h3 { margin: 0; }
+.tag { font-size: 12px; font-weight: 600; color: var(--brand-deep); background: var(--brand-soft); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+.kv { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.kv:first-of-type { border-top: 0; }
+.kv span { color: var(--muted); }
+.kv b { font-weight: 600; text-align: right; }
+.todos { list-style: none; margin: 0; padding: 0; }
+.todos li { display: flex; gap: 12px; align-items: center; padding: 10px 0; font-size: 15px; border-top: 1px solid var(--line); }
+.todos li:first-child { border-top: 0; }
+.todos .box { width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid #c9ced6; flex: none; display: grid; place-items: center; font-size: 13px; color: #fff; }
+.todos li.ok .box { background: var(--good); border-color: var(--good); }
+.todos li.ok span:last-child { color: var(--muted); text-decoration: line-through; }
+.todos button { all: unset; display: flex; gap: 12px; align-items: center; width: 100%; cursor: pointer; }
+.todos button:focus-visible { outline: 2px solid var(--brand); border-radius: 6px; }
+
+.nudge { padding: 2px 6px; display: grid; gap: 4px; font-size: 15px; color: var(--muted); }
+.nudge .row { display: flex; gap: 18px; align-items: baseline; }
+.link { background: none; border: 0; padding: 0; color: var(--brand-deep); font-weight: 600; font-size: 15px; }
+.link.muted { color: var(--muted); font-weight: 500; }
+
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+.btn { border: 0; border-radius: 12px; padding: 13px 22px; font-weight: 600; font-size: 15px; background: var(--brand); color: var(--brand-ink); }
+.btn.quiet { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+@media (max-width: 640px) { .btn { width: 100%; } .actions { flex-direction: column; align-items: stretch; } }
+
+.mover { background: var(--surface); border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 16px; text-align: left; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 22px; gap: 3px 14px; align-items: center; }
+.mover[aria-pressed="true"] { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
+.mover .l1, .mover .l2 { grid-column: 1; min-width: 0; }
+.mover .l1 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.mover .name { font-weight: 700; font-size: 16px; }
+.mover .price { font-weight: 600; font-size: 15px; font-variant-numeric: tabular-nums; }
+.mover .l2 { color: var(--muted); font-size: 14px; display: flex; gap: 6px; flex-wrap: wrap; }
+.mover .l2 .ok { color: var(--good); font-weight: 500; }
+.mover .radio { grid-column: 2; grid-row: 1 / 3; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #c9ced6; display: grid; place-items: center; }
+.mover[aria-pressed="true"] .radio { border-color: var(--brand); background: var(--brand); }
+.mover[aria-pressed="true"] .radio::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+
+.field { display: grid; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+.field label, .field .lbl { font-size: 13px; font-weight: 600; color: var(--muted); display: flex; justify-content: space-between; }
+.field input[type="text"] { border: 0; border-bottom: 1.5px solid var(--line); background: none; color: var(--ink); font: inherit; font-size: 16px; padding: 4px 0 6px; width: 100%; }
+.field input[type="text"]:focus { border-color: var(--brand); outline: none; }
+.field input[type="range"] { width: 100%; accent-color: var(--brand); margin: 6px 0 0; }
+.field output { color: var(--ink); font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 7px 14px; font-size: 14px; font-weight: 500; }
+.chip[aria-pressed="true"] { background: var(--brand-soft); border-color: var(--brand); color: var(--brand-deep); }
+.est { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; font-size: 15px; color: var(--muted); }
+.est b { font-size: 24px; color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.sheet { position: fixed; inset: 0; background: rgba(4, 7, 11, .7); display: flex; align-items: center; justify-content: center; z-index: 9; padding: 16px; }
+.panel { background: var(--surface); width: 100%; max-width: 440px; border-radius: 22px; padding: 16px 18px 20px; display: grid; gap: 12px; }
+.urlbar { font-size: 13px; color: var(--muted); background: var(--bg); border-radius: 999px; padding: 7px 14px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.panel h3 { font-size: 20px; font-weight: 700; color: var(--partner); }
+.panel .btn { background: var(--partner); color: #fff; width: 100%; }
+@media (max-width: 640px) { .sheet { align-items: flex-end; padding: 0; } .panel { max-width: none; border-radius: 22px 22px 0 0; padding-bottom: max(20px, env(safe-area-inset-bottom, 0px)); } }
+
+.stars { display: flex; gap: 8px; margin-top: 10px; }
+.stars button { flex: 1; height: 44px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); font-weight: 600; font-size: 15px; }
+.stars button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.demo { font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+/* pay later */
+.todos button .go { margin-left: auto; color: var(--brand-deep); font-weight: 600; font-size: 14px; }
+.todos li.ok .go { text-decoration: none; color: var(--brand-deep); }
+.mover.opt .price small { color: var(--muted); font-weight: 500; font-size: 13px; }
+.jtag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--jaga); background: var(--jaga-soft); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+.jtag i { width: 14px; height: 14px; border-radius: 4px; background: var(--jaga); color: #fff; font-style: normal; font-size: 9px; display: inline-grid; place-items: center; }
+.note { font-size: 13.5px; color: var(--muted); }
+.note b { color: var(--ink); font-weight: 600; }
+.pill { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 1px 8px; background: var(--bg); color: var(--muted); }
+.pill.paid, .pill.early { background: var(--good-soft); color: var(--good); }
+.pill.failed { background: var(--bad-soft); color: var(--bad); }
+.pill.next { background: var(--brand-soft); color: var(--brand-deep); }
+.kv.cancelled b { color: var(--muted); text-decoration: line-through; font-weight: 500; }
+.alert { background: var(--bad-soft); border-radius: 14px; padding: 12px 14px; display: grid; gap: 6px; margin: 4px 0 10px; font-size: 14.5px; }
+.alert b { color: var(--bad); }
+.alert .row { display: flex; gap: 18px; flex-wrap: wrap; }
+.events { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px dashed var(--line); display: grid; gap: 4px; font-size: 13.5px; color: var(--muted); }
+.agree { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); cursor: pointer; }
+.agree input { accent-color: var(--brand); width: 18px; height: 18px; margin: 2px 0 0; flex: none; }
+.hero.info { background: var(--jaga-soft); border-color: transparent; }
+.or { text-align: center; font-size: 13px; color: var(--muted); }
+.panel .btn.jaga { background: var(--jaga); }
+.demo .row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .view { animation: in .22s ease both; }
+  @keyframes in { from { opacity: .3; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+
+<div class="proto"><div class="in"><span>Prototype by Vikram Thalithaje. Kodu, Jaga Pay, the movers, people and prices are made up.</span><button id="restart">Restart</button></div></div>
+
+<header class="appbar"><div class="in">
+  <span class="logo"><i>K</i>Kodu</span>
+  <nav class="nav" aria-label="Main">
+    <a href="#signed" class="on" data-nav="lease">My lease</a><a href="#payments" data-nav="payments">Payments</a><a href="#signed">Documents</a><a href="#signed">Help</a>
+  </nav>
+  <span class="avatar" aria-hidden="true">A</span>
+</div></header>
+
+<main class="content">
+
+  <!-- 1 signed -->
+  <section class="view" data-view="signed">
+    <div class="hero ok">
+      <div class="okmark">✓</div>
+      <h2>Your lease is signed</h2>
+      <p><b>Tatari 12–5, Tallinn</b> · with landlord Mart K.</p>
+      <p>Move-in <b>Tue 1 Dec 2026</b> · 2 rooms, 52 m² · €690 a month</p>
+    </div>
+    <div class="card">
+      <h3>Before you move in</h3>
+      <ul class="todos">
+        <li class="ok"><span class="box">✓</span><span>Sign the lease</span></li>
+        <li class="dep"></li>
+        <li><span class="box"></span><span>Set up electricity and internet</span></li>
+        <li><span class="box"></span><span>Handover protocol on move-in day</span></li>
+      </ul>
+    </div>
+    <div class="nudge" id="promo">
+      <span>Moving in on 1 Dec? Want a few mover suggestions for that day?</span>
+      <span class="row"><button class="link" data-go="movers">Yes, show me</button><button class="link muted" id="dismiss">Not now</button></span>
+    </div>
+  </section>
+
+  <!-- 2 movers -->
+  <section class="view" data-view="movers" hidden>
+    <button class="back" data-go="signed">‹ My lease</button>
+    <ol class="prog"><li class="on">Mover</li><li>Details</li><li>Book</li></ol>
+    <h1 class="vt">Movers free on Tue 1 Dec</h1>
+    <p class="vs">Tartu → Tallinn, 2 rooms. Every mover here is insured and rated 4.3 or higher.</p>
+    <div id="moverList" style="display:grid;gap:10px"></div>
+    <div class="actions"><button class="btn" id="toQuote" disabled>Continue</button></div>
+  </section>
+
+  <!-- 3 quote -->
+  <section class="view" data-view="quote" hidden>
+    <button class="back" data-go="movers">‹ Movers</button>
+    <ol class="prog"><li class="done">Mover</li><li class="on">Details</li><li>Book</li></ol>
+    <h1 class="vt" id="quoteTitle">Quote from Northline Movers</h1>
+    <div class="card">
+      <div class="card-h"><h3>From your lease</h3><span class="tag">Filled in for you</span></div>
+      <div class="kv"><span>Moving to</span><b>Tatari 12–5, Tallinn</b></div>
+      <div class="kv"><span>Date</span><b>Tue 1 Dec 2026</b></div>
+      <div class="kv"><span>Apartment</span><b>2 rooms · 52 m²</b></div>
+    </div>
+    <div class="field"><label for="qFrom">Moving from</label><input type="text" id="qFrom" value="Riia 14–3, Tartu"></div>
+    <div class="field"><label for="qBoxes">Boxes <output id="boxOut">20</output></label><input type="range" id="qBoxes" min="5" max="60" step="5" value="20"></div>
+    <div class="field"><span class="lbl">Large items</span><div class="chips" id="items"></div></div>
+    <div class="est"><span>Estimated price</span><b id="estimate">€0</b></div>
+    <div class="actions"><button class="btn" data-go="booking">Send request</button></div>
+  </section>
+
+  <!-- 4 booking -->
+  <section class="view" data-view="booking" hidden>
+    <div id="bookPending" class="view">
+      <button class="back" data-go="quote">‹ Details</button>
+      <ol class="prog"><li class="done">Mover</li><li class="done">Details</li><li class="on">Book</li></ol>
+      <h1 class="vt">Your quote is in</h1>
+      <p class="vs"><span id="bkMover">Northline Movers</span> replied in 12 minutes.</p>
+      <div class="card">
+        <div class="kv"><span>When</span><b id="bkWhen">Tue 1 Dec, 09:00–12:00</b></div>
+        <div class="kv"><span>Route</span><b>Tartu → Tallinn</b></div>
+        <div class="kv"><span>Load</span><b id="bkLoad">20 boxes</b></div>
+        <div class="kv"><span>Fixed price</span><b id="bkPrice">€0</b></div>
+      </div>
+      <p class="vs">You book and pay on the mover's own page, at their normal price.</p>
+      <div class="actions"><button class="btn" id="openPartner">Book with Northline Movers</button></div>
+    </div>
+    <div id="bookDone" class="view" hidden>
+      <div class="hero ok">
+        <div class="okmark">✓</div>
+        <h2>Your move is booked</h2>
+        <p id="bkSummary">Northline Movers · Tue 1 Dec, 09:00–12:00</p>
+        <p id="bkPaid"></p>
+      </div>
+      <div class="card">
+        <h3>Before you move in</h3>
+        <ul class="todos">
+          <li class="ok"><span class="box">✓</span><span>Sign the lease</span></li>
+          <li class="ok"><span class="box">✓</span><span>Book a mover</span></li>
+          <li class="dep"></li>
+          <li><span class="box"></span><span>Set up electricity and internet</span></li>
+          <li><span class="box"></span><span>Handover protocol on move-in day</span></li>
+        </ul>
+      </div>
+      <div class="demo"><span>Demo shortcut</span><button class="link" data-go="handover">Jump to move-in day →</button></div>
+    </div>
+    <div class="sheet" id="partnerSheet" hidden>
+      <div class="panel">
+        <div class="urlbar" id="partnerUrl">northline-movers.example/book</div>
+        <h3 id="psMover">Northline Movers</h3>
+        <div class="kv"><span>Tue 1 Dec</span><b id="psSlot">09:00–12:00</b></div>
+        <div class="kv"><span>Total</span><b id="psPrice">€0</b></div>
+        <button class="btn" id="confirmPartner">Confirm and pay</button>
+        <div class="or">or</div>
+        <button class="btn jaga" id="confirmJaga">Pay in 3 with Jaga Pay</button>
+        <p class="note" id="jagaNote">0% interest, no fees. First payment today.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 handover -->
+  <section class="view" data-view="handover" hidden>
+    <div id="hoOpen" class="view">
+      <h1 class="vt">Welcome home</h1>
+      <p class="vs">It's Tue 1 Dec. Record the apartment's condition with Mart K. today. It protects your deposit.</p>
+      <div class="card">
+        <h3>Handover protocol</h3>
+        <ul class="todos" id="hoList"></ul>
+      </div>
+      <div class="actions"><button class="btn" id="hoSend" disabled>Send to Mart to sign</button></div>
+    </div>
+    <div id="hoDone" class="view" hidden>
+      <div class="hero ok">
+        <div class="okmark">✓</div>
+        <h2>Protocol signed by both of you</h2>
+        <p>Saved to your lease on 1 Dec 2026.</p>
+      </div>
+      <div class="card">
+        <h3>How was your move with <span id="csMover">Northline Movers</span>?</h3>
+        <p class="vs">1 is poor, 5 is great.</p>
+        <div class="stars" id="stars"></div>
+      </div>
+      <div class="demo"><span>End of the demo</span><button class="link" id="restart2">Start again →</button></div>
+    </div>
+  </section>
+
+  <!-- 6 move-in payment -->
+  <section class="view" data-view="pay" hidden>
+    <button class="back" data-go="signed">‹ My lease</button>
+    <ol class="prog"><li class="on">Plan</li><li>Check</li><li>Confirm</li></ol>
+    <h1 class="vt">Move-in payment</h1>
+    <p class="vs">Deposit €690 and first month's rent €690, due to Mart K. by Wed 25 Nov.</p>
+    <div class="est"><span>Due by 25 Nov</span><b>€1,380</b></div>
+    <div id="optList" style="display:grid;gap:10px"></div>
+    <p class="note">With Jaga Pay, <b>Mart still gets the full amount on 25 Nov</b>. You repay Jaga Pay monthly from 25 Dec.</p>
+    <div class="actions"><button class="btn" id="toCheck" disabled>Continue</button></div>
+  </section>
+
+  <!-- 7 affordability check -->
+  <section class="view" data-view="check" hidden>
+    <button class="back" data-go="pay">‹ Payment options</button>
+    <ol class="prog"><li class="done">Plan</li><li class="on">Check</li><li>Confirm</li></ol>
+    <h1 class="vt">Two quick questions</h1>
+    <p class="vs">So the payments fit your budget. Your €690 rent is counted automatically.</p>
+    <div class="field"><span class="lbl">Monthly income after tax</span><div class="chips" id="incChips"></div></div>
+    <div class="field"><span class="lbl">Other loan or plan payments each month</span><div class="chips" id="debtChips"></div></div>
+    <p class="note">In this demo the decision uses only these answers. A real check would also look at credit records.</p>
+    <div class="actions"><button class="btn" id="toOffer" disabled>See my offer</button></div>
+  </section>
+
+  <!-- 8 offer -->
+  <section class="view" data-view="offer" hidden>
+    <button class="back" data-go="check">‹ Questions</button>
+    <ol class="prog"><li class="done">Plan</li><li class="done">Check</li><li class="on">Confirm</li></ol>
+    <div id="offerBody" class="view"></div>
+  </section>
+
+  <!-- 9 payments -->
+  <section class="view" data-view="payments" hidden>
+    <button class="back" data-go="signed">‹ My lease</button>
+    <h1 class="vt">Payments</h1>
+    <div id="plansBody" class="view"></div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  var VIEWS = ["signed", "movers", "quote", "booking", "handover", "pay", "check", "offer", "payments"];
+  var MOVERS = [
+    { id: "northline", name: "Northline Movers", rating: 4.8, reviews: 212, lo: 220, hi: 290, base: 225, slot: "09:00–12:00", note: "Speaks English" },
+    { id: "kaskede", name: "Kaskede Kolimine", rating: 4.6, reviews: 148, lo: 190, hi: 250, base: 195, slot: "13:00–16:00", note: "Assembles furniture" },
+    { id: "harbour", name: "Harbour & Home", rating: 4.5, reviews: 96, lo: 260, hi: 340, base: 265, slot: "10:00–13:00", note: "Packs for you" }
+  ];
+  var ITEMS = ["Sofa", "Bed", "Wardrobe", "Washing machine", "Desk", "Bike"];
+  var HO = ["Meter readings", "Photos of every room", "Two sets of keys received", "Existing damage noted"];
+
+  var state = fresh();
+  function fresh() { return { view: "signed", mover: null, items: { Sofa: true, Bed: true, Desk: true }, booked: false, ho: {}, hoSent: false, csat: 0,
+    deposit: null, opt: null, inc: null, debt: null, agree: false, plan: null, moverPlan: null, payoff: null }; }
+  var $ = function (id) { return document.getElementById(id); };
+  function mover() { return MOVERS.find(function (m) { return m.id === state.mover; }) || MOVERS[0]; }
+  function nItems() { return ITEMS.filter(function (k) { return state.items[k]; }).length; }
+  function estimate() { return Math.round((mover().base + (+$("qBoxes").value) * 1.2 + nItems() * 9) / 5) * 5; }
+
+  /* ---------- pay later ---------- */
+  var DUE = 1380, RENT = 690;
+  var TODAY = new Date(2026, 10, 21), FIRST = new Date(2026, 11, 25);
+  var TERMS = { p3: { n: 3, annual: 0 }, p6: { n: 6, annual: 0.14 } };
+  var INC = [["Under €1,000", 800], ["€1,000–1,800", 1400], ["€1,800–3,000", 2400], ["Over €3,000", 3500]];
+  var DEBT = [["None", 0], ["Under €200", 120], ["€200–500", 350], ["Over €500", 600]];
+  var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  function eur(n) {
+    var c = Math.round(n * 100), s = c % 100 === 0 ? String(c / 100) : (c / 100).toFixed(2);
+    return "€" + s.replace(/^(\d+)(\d{3})/, "$1,$2");
+  }
+  function day(d) { return d.getDate() + " " + MON[d.getMonth()] + (d.getFullYear() !== 2026 ? " " + d.getFullYear() : ""); }
+  function addMonths(d, i) { return new Date(d.getFullYear(), d.getMonth() + i, d.getDate()); }
+  function addDays(d, i) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + i); }
+  function apr(annual) { return (Math.pow(1 + annual / 12, 12) - 1) * 100; }
+
+  // Every amount is held in cents. Interest-free splits put leftover cents on the first payment;
+  // interest plans put the rounding difference on the last one.
+  function schedule(amount, term, start) {
+    var t = TERMS[term], n = t.n, total = Math.round(amount * 100), rows = [];
+    if (!t.annual) {
+      var base = Math.floor(total / n), extra = total - base * n;
+      for (var i = 0; i < n; i++) { var c = base + (i === 0 ? extra : 0); rows.push({ date: addMonths(start, i), c: c, pc: c, ic: 0, st: "upcoming" }); }
+      rows.extra = extra;
+    } else {
+      var r = t.annual / 12, pmt = Math.round(total * r / (1 - Math.pow(1 + r, -n))), bal = total;
+      for (var j = 0; j < n; j++) {
+        var ic = Math.round(bal * r), pc = j === n - 1 ? bal : pmt - ic;
+        bal -= pc; rows.push({ date: addMonths(start, j), c: pc + ic, pc: pc, ic: ic, st: "upcoming" });
+      }
+      rows.extra = 0;
+    }
+    return rows;
+  }
+  function sum(rows, k, filter) { return rows.reduce(function (a, r) { return a + (!filter || filter(r) ? r[k] : 0); }, 0); }
+  function open(r) { return r.st === "upcoming" || r.st === "failed"; }
+  function monthly(amount, term) { return schedule(amount, term, FIRST)[TERMS[term].n > 1 ? 1 : 0].c / 100; }
+
+  // Demo affordability rule: payments may take up to 35% of what is left after rent and other debts.
+  function decide(term) {
+    var left = INC[state.inc][1] - RENT - DEBT[state.debt][1], cap = 0.35 * left;
+    if (monthly(DUE, term) <= cap) return { kind: "ok", amount: DUE, upfront: 0 };
+    var t = TERMS[term], r = t.annual / 12;
+    var max = cap <= 0 ? 0 : Math.floor((t.annual ? cap * (1 - Math.pow(1 + r, -t.n)) / r : cap * t.n) / 10) * 10;
+    if (max >= 300) return { kind: "lower", amount: max, upfront: DUE - max };
+    return { kind: "no" };
+  }
+
+  function renderDep() {
+    var html;
+    if (state.deposit === "full") html = '<span class="box">✓</span><span>Deposit and first month paid (€1,380)</span>';
+    else if (state.deposit === "plan") html = '<button data-go="payments"><span class="box">✓</span><span>Deposit and first month paid. Repaying with Jaga Pay</span><span class="go">View ›</span></button>';
+    else html = '<button data-go="pay"><span class="box"></span><span>Pay the deposit and first month by 25 Nov</span><span class="go">Pay ›</span></button>';
+    document.querySelectorAll(".todos li.dep").forEach(function (li) { li.className = "dep" + (state.deposit ? " ok" : ""); li.innerHTML = html; });
+  }
+
+  function renderPay() {
+    var opts = [
+      { id: "full", name: "Pay in full", price: "€1,380", l2: "<span>Bank link</span><span>·</span><span>today</span>" },
+      { id: "p3", name: "Pay in 3 with Jaga Pay", price: "3 × " + eur(monthly(DUE, "p3")), l2: '<span class="ok">0% interest</span><span>·</span><span>no fees</span>' },
+      { id: "p6", name: "Pay in 6 with Jaga Pay", price: "6 × " + eur(monthly(DUE, "p6")),
+        l2: "<span>14% a year</span><span>·</span><span>" + eur(sum(schedule(DUE, "p6", FIRST), "ic") / 100) + " interest in total</span>" }
+    ];
+    $("optList").innerHTML = opts.map(function (o) {
+      return '<button class="mover opt" data-opt="' + o.id + '" aria-pressed="' + (state.opt === o.id) + '">' +
+        '<span class="l1"><span class="name">' + o.name + '</span><span class="price">' + o.price + "</span></span>" +
+        '<span class="l2">' + o.l2 + '</span><span class="radio" aria-hidden="true"></span></button>';
+    }).join("");
+    $("toCheck").disabled = !state.opt;
+    $("toCheck").textContent = state.opt === "full" ? "Pay €1,380 by bank link" : "Continue";
+  }
+
+  function renderCheck() {
+    function chips(list, key) {
+      return list.map(function (x, i) { return '<button class="chip" data-' + key + '="' + i + '" aria-pressed="' + (state[key] === i) + '">' + x[0] + "</button>"; }).join("");
+    }
+    $("incChips").innerHTML = chips(INC, "inc");
+    $("debtChips").innerHTML = chips(DEBT, "debt");
+    $("toOffer").disabled = state.inc === null || state.debt === null;
+  }
+
+  function scheduleCard(rows, title, amount) {
+    var out = '<div class="card"><h3>' + title + "</h3>";
+    rows.forEach(function (r) { out += '<div class="kv"><span>' + day(r.date) + "</span><b>" + eur(r.c / 100) + "</b></div>"; });
+    if (rows.extra) out += '<p class="note" style="margin-top:6px">' + eur(amount) + " doesn't split evenly, so the first payment carries the extra " + rows.extra + " cent" + (rows.extra > 1 ? "s" : "") + ".</p>";
+    return out + "</div>";
+  }
+
+  function renderOffer() {
+    if (state.inc === null || state.debt === null || !TERMS[state.opt]) { $("offerBody").innerHTML = ""; return; }
+    var term = state.opt, d = decide(term), other = term === "p3" ? "p6" : "p3", alt = decide(other), n = TERMS[term].n, html = "";
+    if (d.kind === "no") {
+      html = '<div class="hero info"><h2>We can\'t offer a payment plan this time</h2>' +
+        "<p>Based on your answers, monthly payments would take too much of what's left after rent and other payments. This doesn't affect your lease.</p></div>" +
+        '<div class="card"><h3>What you can do</h3><p class="vs">Pay €1,380 by bank link before 25 Nov, or ask Mart K. whether the deposit can be paid in two parts. Many landlords agree to that.</p></div>' +
+        '<div class="actions"><button class="btn" data-act="payfull">Pay €1,380 by bank link</button><button class="btn quiet" data-go="signed">Back to my lease</button></div>';
+      $("offerBody").innerHTML = html; return;
+    }
+    var rows = schedule(d.amount, term, FIRST), interest = sum(rows, "ic") / 100;
+    if (d.kind === "ok") {
+      html += '<div class="hero ok"><div class="okmark">✓</div><h2>You\'re approved for ' + eur(d.amount) + "</h2>" +
+        "<p>Mart K. gets the full €1,380 on 25 Nov. You repay Jaga Pay in " + n + " monthly payments.</p></div>";
+    } else {
+      html += '<div class="hero info"><h2>We can offer ' + eur(d.amount) + " of €1,380</h2>" +
+        "<p>Pay <b>" + eur(d.upfront) + "</b> by bank link today and split <b>" + eur(d.amount) + "</b> into " + n + " payments. Mart K. still gets €1,380 on 25 Nov.</p></div>";
+      if (alt.kind === "ok") html += '<div class="nudge"><span>Pay in ' + TERMS[other].n + " covers the full €1,380 at " + eur(monthly(DUE, other)) + ' a month.</span><span class="row"><button class="link" data-switch="' + other + '">Switch to Pay in ' + TERMS[other].n + "</button></span></div>";
+    }
+    html += scheduleCard(rows, "Your payments", d.amount);
+    html += '<div class="card"><h3>What it costs</h3>' +
+      '<div class="kv"><span>Amount borrowed</span><b>' + eur(d.amount) + "</b></div>" +
+      '<div class="kv"><span>Interest</span><b>' + (interest ? eur(interest) : "€0") + "</b></div>" +
+      '<div class="kv"><span>Total to repay</span><b>' + eur(sum(rows, "c") / 100) + "</b></div>" +
+      '<div class="kv"><span>APR</span><b>' + apr(TERMS[term].annual).toFixed(1) + "%</b></div>" +
+      '<div class="kv"><span>Paying off early</span><b>Free, any time</b></div>' +
+      '<div class="kv"><span>Late payment</span><b>Free date change once, then €5 fee</b></div></div>';
+    html += '<label class="agree"><input type="checkbox" id="agree"' + (state.agree ? " checked" : "") + "> I understand this is a loan and I need to make every payment on time.</label>";
+    html += '<div class="actions"><button class="btn" data-act="startplan"' + (state.agree ? "" : " disabled") + ">" +
+      (d.upfront ? "Pay " + eur(d.upfront) + " and start plan" : "Start payment plan") + "</button></div>";
+    $("offerBody").innerHTML = html;
+  }
+
+  function planCard(p, key) {
+    var left = sum(p.rows, "c", open) / 100, failed = p.rows.filter(function (r) { return r.st === "failed"; })[0];
+    var nextIdx = p.rows.findIndex(function (r) { return r.st === "upcoming"; });
+    var html = '<div class="card"><div class="card-h"><h3>' + p.title + '</h3><span class="jtag"><i>J</i>Jaga Pay · Pay in ' + p.rows.length + "</span></div>";
+    html += '<p class="vs" style="margin-bottom:6px">' + (left ? eur(left) + " left to pay" : "Fully paid") + " · " + p.paidNote + "</p>";
+    if (failed) {
+      var retry = addDays(failed.date, 3);
+      html += '<div class="alert"><span><b>Your ' + eur(failed.c / 100) + " payment on " + day(failed.date) + " didn't go through.</b> We'll try again on " + day(retry) +
+        ". No fee if it's paid by " + day(addDays(failed.date, 7)) + '.</span><span class="row"><button class="link" data-act="paynow:' + key + '">Pay now</button>' +
+        (p.moved ? "" : '<button class="link" data-act="move:' + key + '">Move it to ' + day(addDays(failed.date, 10)) + " (free, once)</button>") + "</span></div>";
+    }
+    p.rows.forEach(function (r, i) {
+      var pill = r.st === "paid" ? '<span class="pill paid">Paid</span>' : r.st === "early" ? '<span class="pill early">Paid early</span>' :
+        r.st === "failed" ? '<span class="pill failed">Failed</span>' : r.st === "cancelled" ? '<span class="pill">Cancelled</span>' : i === nextIdx ? '<span class="pill next">Next</span>' : "";
+      html += '<div class="kv' + (r.st === "cancelled" ? " cancelled" : "") + '"><span>' + day(r.date) + pill + "</span><b>" + eur(r.c / 100) + "</b></div>";
+    });
+    if (state.payoff === key && left) {
+      var principal = sum(p.rows, "pc", open) / 100, saved = sum(p.rows, "ic", open) / 100;
+      html += '<div class="alert" style="background:var(--good-soft)"><span>Pay <b style="color:var(--ink)">' + eur(principal) + "</b> today to close this plan." +
+        (saved ? " You skip " + eur(saved) + " of interest." : " No fee for paying early.") + '</span><span class="row"><button class="link" data-act="payoff:' + key +
+        '">Pay ' + eur(principal) + '</button><button class="link muted" data-act="nopayoff">Not now</button></span></div>';
+    }
+    if (p.events.length) html += '<ul class="events">' + p.events.map(function (e) { return "<li>" + e + "</li>"; }).join("") + "</ul>";
+    return html + "</div>";
+  }
+
+  function renderPayments() {
+    var plans = [];
+    if (state.plan) plans.push(["plan", state.plan]);
+    if (state.moverPlan) plans.push(["moverPlan", state.moverPlan]);
+    if (!plans.length) {
+      $("plansBody").innerHTML = '<div class="card"><h3>No payment plans</h3><p class="vs">' +
+        (state.deposit === "full" ? "Your deposit and first month are paid." : "Your move-in payment of €1,380 is due on 25 Nov.") + "</p>" +
+        (state.deposit ? "" : '<div class="actions"><button class="btn" data-go="pay">See payment options</button></div>') + "</div>";
+      return;
+    }
+    var html = plans.map(function (x) { return planCard(x[1], x[0]); }).join("");
+    var demos = [];
+    plans.forEach(function (x) {
+      var p = x[1], k = x[0], short = k === "plan" ? "move-in" : "mover";
+      if (p.rows.some(function (r) { return r.st === "upcoming"; }) && !p.rows.some(function (r) { return r.st === "failed"; }))
+        demos.push('<button class="link" data-act="fail:' + k + '">Next ' + short + " payment fails</button>");
+      if (p.rows.some(open)) demos.push('<button class="link" data-act="askpayoff:' + k + '">Pay off ' + short + " plan early</button>");
+      if (k === "moverPlan" && !p.refunded && p.rows.some(open)) demos.push('<button class="link" data-act="refund:moverPlan">Mover refunds €60</button>');
+    });
+    if (demos.length) html += '<div class="demo"><span>Try an edge case</span><span class="row">' + demos.join("") + "</span></div>";
+    $("plansBody").innerHTML = html;
+  }
+
+  function makePlan(title, amount, term, start, paidNote, firstPaid) {
+    var rows = schedule(amount, term, start);
+    if (firstPaid) rows[0].st = "paid";
+    return { title: title, rows: rows, paidNote: paidNote, events: [], moved: false, refunded: false };
+  }
+
+  // A partial refund comes off the payments still open. If it's more than what's left, the rest goes back to the card.
+  function refund(p, amount) {
+    var cents = amount * 100, openRows = p.rows.filter(open), left = sum(openRows, "c"), before = openRows.length ? openRows[openRows.length - 1].c : 0;
+    p.refunded = true;
+    if (cents >= left) {
+      openRows.forEach(function (r) { r.st = "cancelled"; });
+      p.events.push(mover().name + " refunded " + eur(amount) + ". Your remaining payments are cancelled and " + eur((cents - left) / 100) + " goes back to your card.");
+      return;
+    }
+    var rest = left - cents, base = Math.floor(rest / openRows.length), extra = rest - base * openRows.length;
+    openRows.forEach(function (r, i) { r.c = r.pc = base + (i === 0 ? extra : 0); });
+    p.events.push(mover().name + " refunded " + eur(amount) + " for an item that wasn't moved. Your " + openRows.length + " remaining payments went from " + eur(before / 100) + " to " + eur(base / 100) + (extra ? " (first one " + eur((base + extra) / 100) + ")" : "") + ".");
+  }
+
+  function act(a) {
+    var parts = a.split(":"), cmd = parts[0], p = parts[1] ? state[parts[1]] : null;
+    if (cmd === "payfull") { state.deposit = "full"; return go("signed"); }
+    if (cmd === "startplan") {
+      var d = decide(state.opt);
+      state.plan = makePlan("Move-in costs", d.amount, state.opt, FIRST, "Mart K. was paid €1,380 on 25 Nov", false);
+      if (d.upfront) state.plan.events.push("You paid " + eur(d.upfront) + " by bank link on " + day(TODAY) + ". Jaga Pay covered the other " + eur(d.amount) + ".");
+      state.deposit = "plan"; return go("payments");
+    }
+    if (cmd === "fail") { var r = p.rows.find(function (x) { return x.st === "upcoming"; }); r.st = "failed"; }
+    if (cmd === "paynow") { var f = p.rows.find(function (x) { return x.st === "failed"; }); f.st = "paid"; p.events.push("Paid the " + day(f.date) + " payment manually. No fee."); }
+    if (cmd === "move") {
+      var m = p.rows.find(function (x) { return x.st === "failed"; }), from = day(m.date);
+      m.date = addDays(m.date, 10); m.st = "upcoming"; p.moved = true;
+      p.events.push("Moved the " + from + " payment to " + day(m.date) + " at no cost. You can do this once per plan.");
+    }
+    if (cmd === "askpayoff") state.payoff = parts[1];
+    if (cmd === "nopayoff") state.payoff = null;
+    if (cmd === "payoff") {
+      var principal = sum(p.rows, "pc", open) / 100, saved = sum(p.rows, "ic", open) / 100;
+      p.rows.forEach(function (x) { if (open(x)) { x.st = "early"; x.c = x.pc; } });
+      p.events.push("Paid off early on " + day(TODAY) + ": " + eur(principal) + (saved ? ". Skipped " + eur(saved) + " of interest." : ". No fee."));
+      state.payoff = null;
+    }
+    if (cmd === "refund") refund(p, 60);
+    renderPayments();
+  }
+  /* ---------- end pay later ---------- */
+
+  function renderMovers() {
+    $("moverList").innerHTML = MOVERS.map(function (m) {
+      return '<button class="mover" data-mover="' + m.id + '" aria-pressed="' + (state.mover === m.id) + '">' +
+        '<span class="l1"><span class="name">' + m.name + '</span><span class="price">€' + m.lo + "–" + m.hi + "</span></span>" +
+        '<span class="l2"><span>★ ' + m.rating.toFixed(1) + " · " + m.reviews + " reviews</span><span>·</span><span class=\"ok\">" + m.slot + "</span><span>·</span><span>" + m.note + "</span></span>" +
+        '<span class="radio" aria-hidden="true"></span></button>';
+    }).join("");
+    $("toQuote").disabled = !state.mover;
+  }
+  function renderItems() {
+    $("items").innerHTML = ITEMS.map(function (k) {
+      return '<button class="chip" data-item="' + k + '" aria-pressed="' + !!state.items[k] + '">' + k + "</button>";
+    }).join("");
+  }
+  function renderQuote() {
+    $("quoteTitle").textContent = "Quote from " + mover().name;
+    $("boxOut").textContent = $("qBoxes").value;
+    $("estimate").textContent = "€" + estimate();
+  }
+  function renderBooking() {
+    var m = mover(), p = "€" + estimate();
+    ["bkMover", "psMover", "csMover"].forEach(function (id) { $(id).textContent = m.name; });
+    $("openPartner").textContent = "Book with " + m.name;
+    $("bkWhen").textContent = "Tue 1 Dec, " + m.slot; $("psSlot").textContent = m.slot;
+    $("bkPrice").textContent = p; $("psPrice").textContent = p;
+    var n = nItems();
+    $("bkLoad").textContent = $("qBoxes").value + " boxes · " + n + " large item" + (n === 1 ? "" : "s");
+    $("bkSummary").textContent = m.name + " · Tue 1 Dec, " + m.slot;
+    $("partnerUrl").textContent = m.id + "-movers.example/book";
+    var third = schedule(estimate(), "p3", TODAY);
+    $("confirmJaga").textContent = "Pay in 3 with Jaga Pay · " + eur(third[1].c / 100) + " a month";
+    $("jagaNote").textContent = "0% interest, no fees. First payment of " + eur(third[0].c / 100) + " today, then on " + day(third[1].date) + " and " + day(third[2].date) + ".";
+    $("bkPaid").textContent = state.moverPlan ? "Paying in 3 with Jaga Pay. See Payments." : "";
+    $("bookPending").hidden = state.booked;
+    $("bookDone").hidden = !state.booked;
+  }
+  function renderHandover() {
+    $("hoList").innerHTML = HO.map(function (k) {
+      var ok = !!state.ho[k];
+      return '<li class="' + (ok ? "ok" : "") + '"><button data-ho="' + k + '"><span class="box">' + (ok ? "✓" : "") + "</span><span>" + k + "</span></button></li>";
+    }).join("");
+    $("hoSend").disabled = HO.some(function (k) { return !state.ho[k]; });
+    $("hoOpen").hidden = state.hoSent;
+    $("hoDone").hidden = !state.hoSent;
+    $("stars").innerHTML = [1, 2, 3, 4, 5].map(function (n) {
+      return '<button data-star="' + n + '" aria-pressed="' + (state.csat === n) + '" aria-label="' + n + ' of 5">' + n + "</button>";
+    }).join("");
+  }
+
+  function go(view, fromHash) {
+    if (VIEWS.indexOf(view) < 0) view = "signed";
+    state.view = view;
+    if ((view === "quote" || view === "booking") && !state.mover) state.mover = "northline";
+    if (view === "check" && !TERMS[state.opt]) view = "pay";
+    if (view === "offer" && (!TERMS[state.opt] || state.inc === null || state.debt === null)) view = TERMS[state.opt] ? "check" : "pay";
+    if ((view === "pay" || view === "check" || view === "offer") && state.deposit) view = "payments";
+    state.view = view;
+    document.querySelectorAll("[data-nav]").forEach(function (a) { a.classList.toggle("on", (a.dataset.nav === "payments") === (view === "payments")); });
+    document.querySelectorAll("[data-view]").forEach(function (v) { v.hidden = v.getAttribute("data-view") !== view; });
+    $("partnerSheet").hidden = true;
+    renderMovers(); renderQuote(); renderBooking(); renderHandover();
+    renderDep(); renderPay(); renderCheck(); renderOffer(); renderPayments();
+    window.scrollTo(0, 0);
+    if (!fromHash && location.hash !== "#" + view) { try { history.replaceState(null, "", "#" + view); } catch (e) { location.hash = view; } }
+  }
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[href^='#']");
+    if (a) { e.preventDefault(); go(a.getAttribute("href").slice(1)); return; }
+    var t = e.target.closest("button"); if (!t) return;
+    if (t.dataset.mover) { state.mover = t.dataset.mover; renderMovers(); renderQuote(); return; }
+    if (t.dataset.item) { state.items[t.dataset.item] = !state.items[t.dataset.item]; renderItems(); renderQuote(); return; }
+    if (t.dataset.ho) { state.ho[t.dataset.ho] = !state.ho[t.dataset.ho]; renderHandover(); return; }
+    if (t.dataset.star) { state.csat = +t.dataset.star; renderHandover(); return; }
+    if (t.dataset.opt) { state.opt = t.dataset.opt; state.agree = false; renderPay(); return; }
+    if (t.dataset.inc) { state.inc = +t.dataset.inc; renderCheck(); return; }
+    if (t.dataset.debt) { state.debt = +t.dataset.debt; renderCheck(); return; }
+    if (t.dataset.switch) { state.opt = t.dataset["switch"]; state.agree = false; renderOffer(); return; }
+    if (t.dataset.act) return act(t.dataset.act);
+    if (t.dataset.go) return go(t.dataset.go);
+  });
+  $("dismiss").addEventListener("click", function () {
+    $("promo").innerHTML = '<span>Okay. Mover suggestions stay here if you change your mind.</span><span class="row"><button class="link" data-go="movers">Show me after all</button></span>';
+  });
+  $("toQuote").addEventListener("click", function () { go("quote"); });
+  $("toCheck").addEventListener("click", function () { if (state.opt === "full") { state.deposit = "full"; go("signed"); } else go("check"); });
+  $("toOffer").addEventListener("click", function () { state.agree = false; go("offer"); });
+  document.addEventListener("change", function (e) {
+    if (e.target.id === "agree") { state.agree = e.target.checked; var b = document.querySelector('[data-act="startplan"]'); if (b) b.disabled = !state.agree; }
+  });
+  $("confirmJaga").addEventListener("click", function () {
+    state.moverPlan = makePlan(mover().name, estimate(), "p3", TODAY, "Paid to " + mover().name + " in full by Jaga Pay", true);
+    state.booked = true; $("partnerSheet").hidden = true; renderBooking(); renderPayments();
+  });
+  $("qBoxes").addEventListener("input", renderQuote);
+  $("openPartner").addEventListener("click", function () { $("partnerSheet").hidden = false; });
+  $("confirmPartner").addEventListener("click", function () { state.booked = true; $("partnerSheet").hidden = true; renderBooking(); });
+  $("hoSend").addEventListener("click", function () { state.hoSent = true; renderHandover(); });
+  function restart() { state = fresh(); $("qBoxes").value = 20; renderItems(); go("signed"); }
+  $("restart").addEventListener("click", restart);
+  $("restart2").addEventListener("click", restart);
+
+  window.addEventListener("hashchange", function () { var v = location.hash.slice(1); if (v !== state.view) go(v, true); });
+  renderItems();
+  go(location.hash.slice(1), true);
+})();
+</script>
+</body>
+</html>
